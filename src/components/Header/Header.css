@@ -4,7 +4,7 @@
 }
 
 .links{
-    padding-top: 5px;
+    padding-top: 10px;
     padding-right: 20px;
     white-space: nowrap;
     display: flex;
@@ -20,8 +20,13 @@
     flex-direction: row;
 }
 
+.logo{
+    font-family: papyrus;
+    font-weight: bold;
+}
 
 img{
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
+    margin-left: 50px;
 }

@@ -1,0 +1,36 @@
+.signIn{
+    display: block;
+    background-color: rgba(255,255,255,0.85);
+    width: 700px;
+    height: 420px;
+    margin: auto;
+    text-align: center;
+}
+
+.signIn input {
+    margin: auto;
+    margin-top: 16px;
+    display: block;
+    width: 60%;
+    height: 20px;
+    border-radius:4px;
+    background:rgb(235, 227, 227);
+    border: rgb(209, 198, 198) 1px solid;
+    padding: 8px;
+    font-size:1em;
+}
+
+.signIn button {
+    height: 55px;
+    width: 20%;
+    margin: auto;
+    margin-top: 16px;
+    border: none;
+    color: rgb(7, 7, 7);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 4px;
+}
+

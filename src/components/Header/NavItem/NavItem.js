@@ -1,9 +1,9 @@
-import style from './NavItem.module.css';
+import './NavItem.css';
 
 const NavItem = (props) => {
     return (
         <ul>
-            <span className={style.navItem}>{props.children}</span>
+            <span className="navItem">{props.children}</span>
         </ul>
     );
 }

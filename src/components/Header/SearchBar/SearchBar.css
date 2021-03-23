@@ -1,0 +1,18 @@
+.searchBar{
+    width: 300px;
+    height: 30px;
+    margin-left: 13px;
+    margin-top: 13px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border: none;    
+}
+  
+ .searchButton {
+    height: 30px;
+    background: #132d49;
+    border: none;
+    color: white;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
