@@ -12,12 +12,14 @@ const SignIn = () => {
             <form onSubmit={login}>
                 <h2>Sign In</h2> 
 
-                <label htmlFor="email">Email</label>
+                <label className="signInLabel" htmlFor="email">Email</label>
+                <br/>
                 <input type="text" name="email" id="email" placeholder="you@yours.com"/>  
 
-                <br/> <br/> 
+                <br/> 
 
-                <label htmlFor="password">Password</label>
+                <label className="signInLabel" htmlFor="password">Password</label>
+                <br/>
                 <input type="password" name="password" id="password"/>  
 
                 <button>Sign in</button>

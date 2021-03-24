@@ -13,18 +13,33 @@ const SignUp = () => {
             <form onSubmit={register}>
                 <h2>Sign up</h2>
 
-                <label htmlFor="email">Email</label>
+                <label className="signUpLabel" htmlFor="email">Email</label>
+                <br/>
                 <input type="text" name="email" id="email" placeholder="you@yours.com"/>
     
-                <br/> <br/>
+                <br/> 
     
-                <label htmlFor="password">Password</label>
+                <label className="signUpLabel" htmlFor="password">Password</label>
+                <br/>
                 <input type="password" name="password" id="password"/>
     
-                <br/> <br/>
+                <br/> 
     
-                <label htmlFor="repeatPassword">Confirm password</label>
+                <label className="signUpLabel" htmlFor="repeatPassword">Confirm password</label>
+                <br/>
                 <input type="password" name="repeatPassword" id="repeatPassword"/>
+
+                <br/> 
+
+                <label className="signUpLabel" htmlFor="username">Username</label>
+                <br/>
+                <input type="text" name="username" id="username"/>
+
+                <br/> 
+
+                <label className="signUpLabel" htmlFor="address">Address</label>
+                <br/>
+                <input type="text" name="address" id="address"/>
 
                 <button>
                     Sign Up
