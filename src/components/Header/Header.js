@@ -12,29 +12,28 @@ const Header = () => {
             <div className="links">
                 <div>
                     <img src="./books-logo.png" alt=""></img>
-                    <br/>
                     <span className="logo">Online bookstore</span>
                 </div>                 
-                <NavLink style={{ textDecoration: 'none' }} activeClassName="active-navigation-item" exact={true} to="/">
+                <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={true} to="/">
                     <NavItem>Home</NavItem>
                 </NavLink>
-                <NavLink style={{ textDecoration: 'none' }} activeClassName="active-navigation-item" exact={true} to="/categories">
+                <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={true} to="/categories">
                     <NavItem>Categories</NavItem>
                 </NavLink>
 
-                <SearchBar/>
+                <SearchBar className="searchBar"/>
 
                 <div className="auth">
-                    <NavLink style={{ textDecoration: 'none' }} activeClassName="active-navigation-item" exact={true} to="/user/profile">
+                    <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={true} to="/user/profile">
                         <NavItem>My profile</NavItem>
                     </NavLink>
-                    <NavLink style={{ textDecoration: 'none' }} activeClassName="active-navigation-item" exact={true} to="/user/sign-in">
+                    <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={true} to="/user/sign-in">
                         <NavItem>Sign in</NavItem>   
                     </NavLink> 
-                    <NavLink style={{ textDecoration: 'none' }} activeClassName="active-navigation-item" exact={true} to="/user/sign-up"> 
+                    <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={true} to="/user/sign-up"> 
                         <NavItem>Sign up</NavItem>
                     </NavLink> 
-                    <NavLink style={{ textDecoration: 'none' }} activeClassName="active-navigation-item" exact={true} to="/"> 
+                    <NavLink style={{ textDecoration: 'none' }}  to="/"> 
                         <NavItem>Logout</NavItem>  
                     </NavLink> 
                 </div>                

@@ -1,18 +1,31 @@
 import "./SignUp.css"
 
 const SignUp = () => {
+    const register = (e) =>{
+        e.preventDefault();
+        console.log(e.target.email.value)
+        console.log(e.target.password.value)
+        console.log(e.target.repeatPassword.value)
+    };
+
     return (
         <div className="signUp">
-            <form>
+            <form onSubmit={register}>
                 <h2>Sign up</h2>
-                <label className="label">Email</label>
-                <input placeholder="you@yours.com"/>
+
+                <label htmlFor="email">Email</label>
+                <input type="text" name="email" id="email" placeholder="you@yours.com"/>
+    
                 <br/> <br/>
-                <label>Password</label>
-                <input />
+    
+                <label htmlFor="password">Password</label>
+                <input type="password" name="password" id="password"/>
+    
                 <br/> <br/>
-                <label>Confirm password</label>
-                <input />
+    
+                <label htmlFor="repeatPassword">Confirm password</label>
+                <input type="password" name="repeatPassword" id="repeatPassword"/>
+
                 <button>
                     Sign Up
                 </button>

@@ -1,11 +1,16 @@
 import "./SearchBar.css"
 
-const SearchBar = () =>{
+const SearchBar = () => {
+    const search = (e) => {
+        e.preventDefault();
+        console.log(e.target.search.value);
+    };
+
     return(
-        <div>
-            <input className="searchBar" type="text" placeholder="Search books"></input>
-            <input type="submit" value="Search" className="searchButton"></input>
-        </div>
+        <form onSubmit={search}>
+            <input className="searchBar" type="text" name="search" id="search" placeholder="Search books" />
+            <input type="submit" value="Search" className="searchButton" />
+        </form>
     );
 };
 

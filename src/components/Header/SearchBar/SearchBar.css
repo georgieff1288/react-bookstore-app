@@ -8,7 +8,7 @@
     border: none;    
 }
   
- .searchButton {
+ .searchButton {  
     height: 30px;
     background: #132d49;
     border: none;
@@ -16,3 +16,5 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
   }
+
+
