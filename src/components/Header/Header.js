@@ -2,7 +2,6 @@ import {NavLink} from 'react-router-dom';
 
 import NavItem from './NavItem/NavItem';
 import SearchBar from './SearchBar/SearchBar';
-
 import './Header.css';
 
 

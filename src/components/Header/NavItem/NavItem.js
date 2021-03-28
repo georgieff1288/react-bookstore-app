@@ -6,6 +6,6 @@ const NavItem = (props) => {
             <span className="navItem">{props.children}</span>
         </ul>
     );
-}
+};
 
 export default NavItem;
