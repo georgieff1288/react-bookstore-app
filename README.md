@@ -1,6 +1,6 @@
-#Online Bookstore
+# Online Bookstore
 
-##Description
+## Description
 
 Simple online bookstore where you can search, rate, add to shopping cart and purchase books.
 
