@@ -1,4 +1,3 @@
-import { Component } from 'react';
 import {Route, Switch} from 'react-router-dom';
 
 import Header from './components/Header/Header';
@@ -11,9 +10,7 @@ import ErrorPage from './components/ErrorPage/ErrorPage'
 
 import './App.css';
 
-class App extends Component {
-
-    render(){
+const App = () => {
         return(
             <div className="app">
                 <Header />
@@ -29,7 +26,6 @@ class App extends Component {
 
             </div>
         );
-    };
 ;}
 
 
