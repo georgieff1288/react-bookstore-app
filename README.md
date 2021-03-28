@@ -1,3 +1,9 @@
+#Online Bookstore
+
+##Description
+
+Simple online bookstore where you can search, rate, add to shopping cart and purchase books.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -5,6 +11,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
+
+### 'npm install'
+
+Install all dependencies.
 
 ### `npm start`
 
