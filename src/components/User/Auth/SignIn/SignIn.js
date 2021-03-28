@@ -6,15 +6,18 @@ import InputError from '../../../Shared/InputError/InputError'
 const SignIn = () => {
     const onLoginSubmit = (e) => {
         e.preventDefault();
-        console.log(e.target.email.value);
-        console.log(e.target.password.value);
+
+        if(!errorMessage) {
+            console.log(e.target.email.value);
+            console.log(e.target.password.value);
+        };
     };
     
     const [errorMessage, setErrorMessage] = useState('');
 
     const onEmailChangeHandler = (e) => {
         if (!e.target.value) {
-            setErrorMessage('Email required');
+            setErrorMessage('Email is required');
         } else if (!/\S+@\S+\.\S+/.test(e.target.value)) {
             setErrorMessage('Email address is invalid');
         } else {
@@ -24,7 +27,7 @@ const SignIn = () => {
 
     const onPasswordChangeHandler = (e) => {
         if(!e.target.value){
-            setErrorMessage('Password required');
+            setErrorMessage('Password is required');
         } else {
             setErrorMessage('');
         };
