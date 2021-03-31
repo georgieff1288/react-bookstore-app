@@ -1,0 +1,36 @@
+.bestSellers{
+    width: 265px;
+    margin: 30px;    
+    background-color: rgb(238, 229, 229);
+    border-radius: 15px;
+}
+
+.title{
+    text-align: center;
+    color: rgb(252, 0, 0);
+}
+
+
+
+.bookList{
+    list-style: none;
+    counter-reset: steps;
+}
+
+.bookList li {
+    counter-increment: steps;    
+    padding-bottom: 10px;
+}
+
+.bookList li::before {
+    content: counter(steps);
+    margin-right: 0.5rem;
+    background: #ff0000;
+    color: white;
+    width: 1.3em;
+    height: 1.3em;
+    border-radius: 50%;
+    display: inline-grid;
+    place-items: center;
+    line-height: 1.2em;
+}
