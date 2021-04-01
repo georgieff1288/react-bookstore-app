@@ -5,7 +5,7 @@ import './BestSellerBook.css';
 
 const BestSellerBook = ({author, title}) => {
     return(
-        <span className="book">
+        <span className="bestSellerBook">
                 <Link to="/user/profile">{author} - {title}</Link>
         </span>
     );

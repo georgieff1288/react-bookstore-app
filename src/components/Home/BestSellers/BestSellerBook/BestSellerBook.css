@@ -1,9 +1,9 @@
-.book{
+.bestSellerBook{
     padding-bottom: 10px;
     font-weight: bold;
     text-decoration: underline;
 }
 
-.book a{
+.bestSellerBook a{
     color: Black;
 }

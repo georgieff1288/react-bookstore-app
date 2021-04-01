@@ -3,7 +3,7 @@ import './ErrorPage.css';
 const ErrorPage = () => {
     return(
         <div>
-            <img src="./error-page-logo.png" />
+            <img className="errorPage" src="./error-page-logo.png" />
         </div>
     );
 };

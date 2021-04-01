@@ -1,0 +1,4 @@
+.genresPage{
+    display:flex; 
+    flex-direction:row;
+}

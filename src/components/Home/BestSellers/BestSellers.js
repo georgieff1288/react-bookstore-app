@@ -2,7 +2,7 @@ import './BestSellers.css';
 import BestSellerBook from './BestSellerBook/BestSellerBook';
 
 const BestSellers = () => {
-    const books = [ 
+    const Books = [ 
         {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:1}, 
         {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:2}, 
         {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:3}, 
@@ -13,14 +13,14 @@ const BestSellers = () => {
         {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:8},
         {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:9},
         {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:10}
-    ];
+    ]; //Test data
 
     return(
         <div className="bestSellers">
-            <h2 className="title">Best sellers</h2>
-            <ol className="bookList">
-                {books.map(x => 
-                    <li>
+            <h2 className="bestSellersHeading">Best sellers</h2>
+            <ol className="bestSellersList">
+                {Books.map(x => 
+                    <li key={x.id}>
                         <BestSellerBook key={x.id} author={x.author} title={x.title}/>
                     </li>
                 )}
