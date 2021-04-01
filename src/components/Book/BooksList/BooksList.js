@@ -1,5 +1,5 @@
-import './BookList.css'
-import Book from '../Book'
+import './BookList.css';
+import Book from '../Book';
 
 const BooksList = ({items}) => {
     return(

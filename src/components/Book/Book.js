@@ -1,20 +1,30 @@
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import StarRatings from 'react-star-ratings';
 
-import './Book.css'
+import './Book.css';
 
 const Book = ({author, title, rating, price, imgSrc, id}) => {
     return(
         <div className="book">
             <div>
-                <img src={imgSrc}/>
+                <img src={imgSrc} alt={title}/>
                 <br/>
-                <span>{title}</span>
+                <span className="bookTitle">{title}</span>
                 <br/>
                 <span>Author: {author}</span>
                 <br/>
-                <span>Price: {price}</span>
+                <span>Price: {price}$</span>
                 <br/>
-                <span>Rating:{rating}</span>
+                <span className="rating">
+                    <StarRatings
+                        rating={rating}
+                        starRatedColor="orange"
+                        starEmptyColor="grey"
+                        numberOfStars={5}
+                        starDimension="25px"
+                        starSpacing="2px"
+                    />
+                </span>
             </div>
             
             <br/>

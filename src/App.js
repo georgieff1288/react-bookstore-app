@@ -7,7 +7,7 @@ import UserProfile from './components/User/UserProfile/UserProfile';
 import SignIn from './components/User/Auth/SignIn/SignIn';
 import SignUp from './components/User/Auth/SignUp/SignUp';
 import ErrorPage from './components/ErrorPage/ErrorPage';
-import BookDetails from './components/Book/BookDetails/BookDetails'
+import BookDetails from './components/Book/BookDetails/BookDetails';
 
 import './App.css';
 

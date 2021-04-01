@@ -8,6 +8,7 @@
 .book img{
     width: 100px;
     height: 140px;
+    margin-left: 26%;
 }
 
 .book a{
@@ -27,5 +28,14 @@
     margin-top: 5px;
     margin-bottom: 5px;
     border-radius: 5px;    
+}
+
+.bookTitle{
+    font-weight: bold;
+}
+
+.rating{
+    margin-left: 17%;
+    margin-bottom: 15px;;
 }
 

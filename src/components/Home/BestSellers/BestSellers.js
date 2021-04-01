@@ -3,16 +3,16 @@ import BestSellerBook from './BestSellerBook/BestSellerBook';
 
 const BestSellers = () => {
     const Books = [ 
-        {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:1}, 
-        {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:2}, 
-        {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:3}, 
-        {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:4}, 
-        {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:5},
-        {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:6},
-        {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:7},
-        {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:8},
-        {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:9},
-        {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:10}
+        {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:111}, 
+        {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:222}, 
+        {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:333}, 
+        {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:444}, 
+        {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:555},
+        {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:666},
+        {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:777},
+        {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:888},
+        {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:999},
+        {author:'Ken Kesey', title:`One Flew Over the Cuckoo's Nest`, id:101010}
     ]; //Test data
 
     return(
@@ -21,7 +21,7 @@ const BestSellers = () => {
             <ol className="bestSellersList">
                 {Books.map(x => 
                     <li key={x.id}>
-                        <BestSellerBook key={x.id} author={x.author} title={x.title}/>
+                        <BestSellerBook key={x.id} author={x.author} title={x.title} id={x.id}/>
                     </li>
                 )}
             </ol>
