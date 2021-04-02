@@ -8,8 +8,7 @@ const Home = () => {
     return(
         <div className="home">
             <BestSellers/>
-            <Greeting>{Username}</Greeting>
-            
+            <Greeting>{Username}</Greeting>            
         </div>
     );
 };

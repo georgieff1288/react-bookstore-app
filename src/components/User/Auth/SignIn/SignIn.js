@@ -4,16 +4,16 @@ import './SignIn.css'
 import InputError from '../../../Shared/InputError/InputError'
 
 const SignIn = () => {
+    const [errorMessage, setErrorMessage] = useState('');
+
     const onLoginSubmit = (e) => {
         e.preventDefault();
 
-        if(!errorMessage) {
+        if(!errorMessage && e.target.email.value && e.target.password.value) {
             console.log(e.target.email.value);
             console.log(e.target.password.value);
         };
     };
-    
-    const [errorMessage, setErrorMessage] = useState('');
 
     const onEmailChangeHandler = (e) => {
         if (!e.target.value) {

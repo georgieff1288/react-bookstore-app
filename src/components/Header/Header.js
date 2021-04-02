@@ -18,14 +18,14 @@ const Header = () => {
                     <NavItem>Home</NavItem>
                 </NavLink>
                 <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={false} to="/genres">
-                    <NavItem>Genres</NavItem>
+                    <NavItem>Books</NavItem>
                 </NavLink>
 
                 <SearchBar className="searchBar"/>
 
                 <div className="auth">
-                    <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={true} to="/user/profile">
-                        <NavItem>My profile</NavItem>
+                    <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={true} to="/user/orders">
+                        <NavItem>My orders</NavItem>
                     </NavLink>
                     <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={true} to="/user/sign-in">
                         <NavItem>Sign in</NavItem>   

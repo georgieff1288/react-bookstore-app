@@ -10,7 +10,14 @@ const SignUp = () => {
     const onRegister = (e) =>{
         e.preventDefault();
 
-        if(!errorMessage){
+        if(
+            !errorMessage 
+            && e.target.email.value 
+            && e.target.password.value 
+            && e.target.repeatPassword.value 
+            && e.target.username.value 
+            && e.target.address.value
+            ){
             console.log(e.target.email.value);
             console.log(e.target.password.value);
             console.log(e.target.repeatPassword.value);

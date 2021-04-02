@@ -3,7 +3,7 @@ import {Route, Switch} from 'react-router-dom';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Genres from './components/Genres/Genres';
-import UserProfile from './components/User/UserProfile/UserProfile';
+import UserOrders from './components/User/UserOrders/UserOrders';
 import SignIn from './components/User/Auth/SignIn/SignIn';
 import SignUp from './components/User/Auth/SignUp/SignUp';
 import ErrorPage from './components/ErrorPage/ErrorPage';
@@ -19,10 +19,10 @@ const App = () => {
                 <Switch>
                     <Route path="/" exact component={Home} />
                     <Route path="/genres/:name?" component={Genres} />
-                    <Route path="/user/profile" component={UserProfile} />
+                    <Route path="/user/orders" component={UserOrders} />
                     <Route path="/user/sign-in" component={SignIn} />
                     <Route path="/user/sign-up" component={SignUp} />
-                    <Route path="/books/details/:bookId" exact component={BookDetails} />
+                    <Route path="/books/details/:bookId" component={BookDetails} />
                     <Route component={ErrorPage} />
                 </Switch>
 

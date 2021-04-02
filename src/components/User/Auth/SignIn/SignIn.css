@@ -20,6 +20,7 @@
 }
 
 .signIn button {
+    background-color: rgb(190, 190, 190);
     height: 55px;
     width: 20%;
     margin: auto;
