@@ -1,27 +1,27 @@
 import { db, auth } from '../firebase.config';
 
 
-export async function register(data) {
-    let error = '';
+export const register = async (data) => {
+    let res = '';
     await auth.createUserWithEmailAndPassword(data.email, data.password).then((res) => {
         let  userData = {uid:res.user.uid, email:res.user.email, username:data.username, address:data.address};
         db.doc(`users/${userData.uid}`).set(userData);
     }).catch((err) => {
-       error = err.message;
+       res = err.message;
     });
-    return error;
+    return res;
 };
 
-export async function login(data) {
-    let error ='';
+export const login = async (data) => {
+    let res ='';
     await auth.signInWithEmailAndPassword(data.email, data.password)
         .catch((err) => {
             //error = err.message;
-            error = 'Invalid email or password.';
+            res = 'Invalid email or password.';
         });
-    return error;
+    return res;
 };
 
-export async function logout() {
+export const logout = async () => {
     await auth.signOut();
 };

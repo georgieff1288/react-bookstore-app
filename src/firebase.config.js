@@ -3,13 +3,13 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 var environment = {
-    apiKey: "AIzaSyB__zVtA-UFFRWGXRamUx_f9lbamZGyh2U",
-    authDomain: "react-bookstore-app-1c03c.firebaseapp.com",
-    databaseURL: "https://react-bookstore-app-1c03c-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "react-bookstore-app-1c03c",
-    storageBucket: "react-bookstore-app-1c03c.appspot.com",
-    messagingSenderId: "139376495432",
-    appId: "1:139376495432:web:cbd34a3ae97f47bf82017d"
+    apiKey: "AIzaSyBB02uDdfWgDrB6zpuz_V8phN6lPkXYuQE",
+    authDomain: "react-bookstore-app-eaa7b.firebaseapp.com",
+    databaseURL: "https://react-bookstore-app-eaa7b-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "react-bookstore-app-eaa7b",
+    storageBucket: "react-bookstore-app-eaa7b.appspot.com",
+    messagingSenderId: "699648478538",
+    appId: "1:699648478538:web:58a5031b430d85437985b3"
 };
 
 const firebaseConfig = firebase.initializeApp(environment);

@@ -15,8 +15,9 @@ const SignIn = ({history}) => {
             login(data).then((res) => {
                 if(res){
                     setErrorMessage(res);
-                };
-                history.push('/genres');
+                }else{
+                    history.push('/genres');
+                };                
             });
         };
     };

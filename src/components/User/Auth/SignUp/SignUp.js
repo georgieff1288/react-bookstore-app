@@ -29,8 +29,9 @@ const SignUp = ({history}) => {
             register(data).then((res) => {
                 if(res){
                     setErrorMessage(res);
-                };
-                history.push('/genres');
+                }else{
+                    history.push('/genres');
+                };                
             });             
         };
     };
