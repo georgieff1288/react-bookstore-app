@@ -1,9 +1,10 @@
 import {useState} from 'react';
 
-import InputError from '../../../Shared/InputError/InputError';
 import './SignUp.css';
+import InputError from '../../../Shared/InputError/InputError';
+import { register } from '../../../../services/authService';
 
-const SignUp = () => {
+const SignUp = ({history}) => {
     const [errorMessage, setErrorMessage] = useState('');
     const [password, setPassword] = useState('');
 
@@ -18,11 +19,19 @@ const SignUp = () => {
             && e.target.username.value 
             && e.target.address.value
             ){
-            console.log(e.target.email.value);
-            console.log(e.target.password.value);
-            console.log(e.target.repeatPassword.value);
-            console.log(e.target.username.value);
-            console.log(e.target.address.value);
+            
+            let data = {
+                email:e.target.email.value,
+                password:e.target.password.value,
+                username:e.target.username.value,
+                address:e.target.address.value 
+            };
+            register(data).then((res) => {
+                if(res){
+                    setErrorMessage(res);
+                };
+                history.push('/genres');
+            });             
         };
     };
 

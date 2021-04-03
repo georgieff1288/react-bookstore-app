@@ -1,8 +1,8 @@
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
+import './Header.css';
 import NavItem from './NavItem/NavItem';
 import SearchBar from './SearchBar/SearchBar';
-import './Header.css';
 
 
 const Header = () => {
@@ -33,7 +33,7 @@ const Header = () => {
                     <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={true} to="/user/sign-up"> 
                         <NavItem>Sign up</NavItem>
                     </NavLink> 
-                    <NavLink style={{ textDecoration: 'none' }}  to="/"> 
+                    <NavLink style={{ textDecoration: 'none' }} to="/logout"> 
                         <NavItem>Logout</NavItem>  
                     </NavLink> 
                 </div>                

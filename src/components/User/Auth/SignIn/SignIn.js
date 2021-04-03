@@ -1,17 +1,23 @@
 import { useState } from 'react';
 
-import './SignIn.css'
-import InputError from '../../../Shared/InputError/InputError'
+import './SignIn.css';
+import InputError from '../../../Shared/InputError/InputError';
+import { login } from '../../../../services/authService';
 
-const SignIn = () => {
+const SignIn = ({history}) => {
     const [errorMessage, setErrorMessage] = useState('');
 
     const onLoginSubmit = (e) => {
         e.preventDefault();
 
         if(!errorMessage && e.target.email.value && e.target.password.value) {
-            console.log(e.target.email.value);
-            console.log(e.target.password.value);
+            let data = {email:e.target.email.value, password:e.target.password.value};
+            login(data).then((res) => {
+                if(res){
+                    setErrorMessage(res);
+                };
+                history.push('/genres');
+            });
         };
     };
 

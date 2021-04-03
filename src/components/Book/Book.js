@@ -21,8 +21,8 @@ const Book = ({author, title, rating, price, imgSrc, id}) => {
                         starRatedColor="orange"
                         starEmptyColor="grey"
                         numberOfStars={5}
-                        starDimension="25px"
-                        starSpacing="2px"
+                        starDimension="20px"
+                        starSpacing="1px"
                     />
                 </span>
             </div>

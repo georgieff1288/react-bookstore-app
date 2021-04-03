@@ -29,16 +29,22 @@ const Details = ({ match }) => {
         {
             author:"Ivan",
             id:1,
+            rating:5,
+            date:"April 3rd 2021",
             content:`Tyrannical Nurse Ratched rules her ward in an Oregon State mental hospital with a strict and unbending routine, unopposed by her patients, who remain cowed by mind-numbing medication and the threat of electric shock therapy. But her regime is disrupted by the arrival of McMurphy – the swaggering, fun-loving trickster with a devilish grin who resolves to oppose her rules on behalf of his fellow inmates. His struggle is seen through the eyes of Chief Bromden, a seemingly mute half-Indian patient who understands McMurphy's heroic attempt to do battle with the powers that keep them imprisoned. Ken Kesey's extraordinary first novel is an exuberant, ribald and devastatingly honest portrayal of the boundaries between sanity and madness.`
         },
         {
             author:"Ivan",
             id:2,
+            rating:4,
+            date:"April 3rd 2021",
             content:`Tyrannical Nurse Ratched rules her ward in an Oregon State mental hospital with a strict and unbending routine, unopposed by her patients, who remain cowed by mind-numbing medication and the threat of electric shock therapy. But her regime is disrupted by the arrival of McMurphy – the swaggering, fun-loving trickster with a devilish grin who resolves to oppose her rules on behalf of his fellow inmates. His struggle is seen through the eyes of Chief Bromden, a seemingly mute half-Indian patient who understands McMurphy's heroic attempt to do battle with the powers that keep them imprisoned. Ken Kesey's extraordinary first novel is an exuberant, ribald and devastatingly honest portrayal of the boundaries between sanity and madness.`
         },
         {
             author:"Ivan",
             id:3,
+            rating:3,
+            date:"April 3rd 2021",
             content:`Tyrannical Nurse Ratched rules her ward in an Oregon State mental hospital with a strict and unbending routine, unopposed by her patients, who remain cowed by mind-numbing medication and the threat of electric shock therapy. But her regime is disrupted by the arrival of McMurphy – the swaggering, fun-loving trickster with a devilish grin who resolves to oppose her rules on behalf of his fellow inmates. His struggle is seen through the eyes of Chief Bromden, a seemingly mute half-Indian patient who understands McMurphy's heroic attempt to do battle with the powers that keep them imprisoned. Ken Kesey's extraordinary first novel is an exuberant, ribald and devastatingly honest portrayal of the boundaries between sanity and madness.`
         }
     ]; //Test data
@@ -56,8 +62,8 @@ const Details = ({ match }) => {
                     starRatedColor="orange"
                     starEmptyColor="grey"
                     numberOfStars={5}
-                    starDimension="25px"
-                    starSpacing="2px"
+                    starDimension="20px"
+                    starSpacing="1px"
                     className="rating"
                 />
             
@@ -75,7 +81,7 @@ const Details = ({ match }) => {
         <div className="reviews">
             <div className="reviewsList">
                 {reviews.map(x => 
-                    <Review key={x.id} author={x.author} content={x.content} id={x.id}/>
+                    <Review key={x.id} author={x.author} content={x.content} rating={x.rating} date={x.date} id={x.id}/>
                 )}
             </div>
 
