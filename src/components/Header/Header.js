@@ -32,6 +32,9 @@ const Header = () => {
                     </NavLink> 
                     <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={true} to="/user/sign-up"> 
                         <NavItem>Sign up</NavItem>
+                    </NavLink>
+                    <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={true} to="/seed"> 
+                        <NavItem>Seed</NavItem>
                     </NavLink> 
                     <NavLink style={{ textDecoration: 'none' }} to="/logout"> 
                         <NavItem>Logout</NavItem>  

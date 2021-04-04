@@ -1,0 +1,57 @@
+.seedContainer{
+    display: block;
+    margin: auto;
+    text-align: center;
+    background-color: rgba(255,255,255,0.85);
+    width: 700px;
+    height: 420px;
+}
+
+.seedContainer p{
+    color: red;
+    font-weight: bold;
+}
+
+.seedContainer input {
+    margin: auto;
+    display: block;
+    width: 40%;
+    height: 20px;
+    border-radius:4px;
+    background:rgb(235, 227, 227);
+    border: rgb(209, 198, 198) 1px solid;
+    padding: 8px;
+    font-size:1em;
+}
+
+.seedContainer button {
+    background-color: rgb(190, 190, 190);
+    height: 55px;
+    width: 20%;
+    margin: auto;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    border: none;
+    color: rgb(7, 7, 7);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.seedContainer textarea{
+    resize:none;
+    margin-bottom: 15px;
+}
+.seedContainer select{
+    width: 300px;
+    height: auto;
+    font-size: medium;
+    margin-bottom: 15px;
+}
+
+.seedFormLabel{
+    float: left;
+    margin-left: 200px;
+}

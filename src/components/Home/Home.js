@@ -4,11 +4,11 @@ import Greeting from './Greeting/Greeting';
 
 
 const Home = () => {
-    const Username = ''
+    const Username = '';    
     return(
         <div className="home">
             <BestSellers/>
-            <Greeting>{Username}</Greeting>            
+            <Greeting>{Username}</Greeting>
         </div>
     );
 };
