@@ -13,11 +13,14 @@ import { logout } from './services/authService';
 import './App.css';
 
 const App = () => {
-
+    // const [user, setUser] = useState(null);
+    // useEffect(() => {
+    //     auth.onAuthStateChanged(setUser);
+    // }, []);    
+    
     return(
         <div className="app">
             <Header />
-
             <Switch>
                 <Route path="/logout" render={() => {
                 logout();
@@ -31,11 +34,9 @@ const App = () => {
                 <Route path="/books/details/:bookId" component={BookDetails} />
                 <Route component={ErrorPage} />
             </Switch>
-
         </div>
     );
 };
-
 
 
 export default App;

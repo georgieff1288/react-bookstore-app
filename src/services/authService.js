@@ -1,4 +1,4 @@
-import { db, auth } from '../firebase.config';
+import { db, auth } from '../utils/firebase.config';
 
 
 export const register = async (data) => {

@@ -15,10 +15,3 @@ var environment = {
 const firebaseConfig = firebase.initializeApp(environment);
 export const db = firebaseConfig.firestore();
 export const auth = firebaseConfig.auth(); 
-
-
-
-
-
-
-
