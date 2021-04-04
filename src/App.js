@@ -8,6 +8,7 @@ import SignIn from './components/User/Auth/SignIn/SignIn';
 import SignUp from './components/User/Auth/SignUp/SignUp';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import BookDetails from './components/Book/BookDetails/BookDetails';
+import DataSeedForm from './components/DataSeedForm/DataSeedForm';
 import { logout } from './services/authService';
 
 import './App.css';
@@ -31,6 +32,7 @@ const App = () => {
                 <Route path="/user/orders" component={UserOrders} />
                 <Route path="/user/sign-in" component={SignIn} />
                 <Route path="/user/sign-up" component={SignUp} />
+                <Route path="/seed" component={DataSeedForm} />
                 <Route path="/books/details/:bookId" component={BookDetails} />
                 <Route component={ErrorPage} />
             </Switch>
