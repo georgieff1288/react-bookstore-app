@@ -15,10 +15,10 @@ const GenresList = () => {
     return (
         <div className="genres">
             <h2>Genres</h2>
-            <Loader>{loader}</Loader>
+            <Loader display={loader} style={{width:180}}/>
             <ul className="genresList">
                 {genres.map(x => 
-                    <li key={x.id}><NavLink to={"/genres/" + x.name} activeClassName="selected">{x.name}</NavLink></li>
+                    <li key={x.id}><NavLink to={"/books/genre/" + x.name} activeClassName="selected">{x.name}</NavLink></li>
                 )}
             </ul>
         </div>

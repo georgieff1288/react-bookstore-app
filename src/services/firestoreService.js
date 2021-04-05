@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import { db } from '../utils/firebase.config';
 
 
@@ -15,7 +17,10 @@ export const getAllGenres = (setState, setLoader) => {
             if(setLoader){
                 setLoader('hide');
             };
-         });
+        })
+        .catch((err) => {
+            window.alert(err.message);
+        });
 };
 
 export const addBook = async (book) => {
@@ -23,9 +28,13 @@ export const addBook = async (book) => {
     book.numOfRatings = 0;
     book.sumOfRatings = 0;
     book.sales = 0;
+    book.created = moment().format("MMM Do YYYY");
     let imageName = '';
     await db.collection('books').add(book).then((doc) => {
         imageName = doc.id;
+    })
+    .catch((err) => {
+        window.alert(err.message);
     });
     return imageName;
 };

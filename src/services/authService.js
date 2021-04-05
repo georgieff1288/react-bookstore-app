@@ -23,5 +23,8 @@ export const login = async (data) => {
 };
 
 export const logout = async () => {
-    await auth.signOut();
+    await auth.signOut()
+        .catch((err) => {
+            window.alert(err.message);
+        });
 };

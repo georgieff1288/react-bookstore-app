@@ -1,8 +1,8 @@
 import './Loader.css'
 
-const Loader = ({children}) => {
+const Loader = (props) => {
     return(
-        <h3 className={children}>Loading...</h3>
+        <h3 className={props.display} style={props.style}>Loading...</h3>
     );
 };
 

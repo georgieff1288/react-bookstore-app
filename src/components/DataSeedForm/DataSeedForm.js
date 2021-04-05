@@ -5,6 +5,8 @@ import InputError from '../Shared/InputError/InputError';
 import { uploadImage } from '../../services/storageService';
 import { addBook, getAllGenres } from '../../services/firestoreService';
 
+
+//NB:This component must not be part of the user interface. It serves only for seeding data!
 const DataSeedForm = () =>{
     const [genres, setGenres] = useState([]);
     useEffect(() => {
@@ -89,7 +91,6 @@ const DataSeedForm = () =>{
     return(
         <div className="seedContainer">
             <h2>Data seed form.</h2>
-            <p>NB:This component must not be part of the user interface. It serves only for seeding data!</p>
             <InputError>{errorMessage}</InputError>
             <form onSubmit={sendData}>
                 <label className="seedFormLabel" htmlFor="author">Author</label>

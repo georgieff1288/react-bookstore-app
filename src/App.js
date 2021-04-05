@@ -28,12 +28,13 @@ const App = () => {
                 return <Redirect to="/" />
                  }} />
                 <Route path="/" exact component={Home} />
-                <Route path="/genres/:name?" component={Genres} />
-                <Route path="/user/orders" component={UserOrders} />
-                <Route path="/user/sign-in" component={SignIn} />
-                <Route path="/user/sign-up" component={SignUp} />
-                <Route path="/seed" component={DataSeedForm} />
+                <Route path="/books/genre/:name?" exact component={Genres} />
+                <Route path="/books" exact component={Genres} />
                 <Route path="/books/details/:bookId" component={BookDetails} />
+                <Route path="/user/orders" exact component={UserOrders} />
+                <Route path="/user/sign-in" exact component={SignIn} />
+                <Route path="/user/sign-up" exact component={SignUp} />
+                <Route path="/add-book" exact component={DataSeedForm} />              
                 <Route component={ErrorPage} />
             </Switch>
         </div>

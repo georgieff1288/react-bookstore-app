@@ -17,7 +17,7 @@ const Header = () => {
                 <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={true} to="/">
                     <NavItem>Home</NavItem>
                 </NavLink>
-                <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={false} to="/genres">
+                <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={false} to="/books">
                     <NavItem>Books</NavItem>
                 </NavLink>
 
@@ -33,8 +33,8 @@ const Header = () => {
                     <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={true} to="/user/sign-up"> 
                         <NavItem>Sign up</NavItem>
                     </NavLink>
-                    <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={true} to="/seed"> 
-                        <NavItem>Seed</NavItem>
+                    <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={true} to="/add-book"> 
+                        <NavItem>Add book</NavItem>
                     </NavLink> 
                     <NavLink style={{ textDecoration: 'none' }} to="/logout"> 
                         <NavItem>Logout</NavItem>  

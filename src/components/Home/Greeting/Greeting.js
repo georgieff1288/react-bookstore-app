@@ -11,7 +11,7 @@ const Greeting = (props) => {
             </div>
             :
             <div>
-                <h1>Please <Link to="/user/sign-in">Login</Link> to rate and order books.</h1>
+                <h1>Please <Link to="/user/sign-in">Sign-in</Link> to rate and order books.</h1>
                 <h1>Don't have an account yet? <Link to="/user/sign-up">Sign-up</Link> right now.</h1>
             </div>
             }

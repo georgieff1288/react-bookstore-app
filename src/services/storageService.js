@@ -3,5 +3,10 @@ import { storage } from '../utils/firebase.config';
 export const uploadImage = (file, fileName) => {
     let storageRef = storage.ref();
     let fileRef = storageRef.child(fileName);
-    fileRef.put(file);
+    fileRef.put(file).then(()=>{
+        window.alert('Book was successfully uploaded');
+    })
+    .catch((err) => {
+        window.alert(err.message);
+    });;
 };
