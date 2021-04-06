@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import StarRatings from 'react-star-ratings';
 
 import './Book.css';
@@ -29,7 +29,7 @@ const Book = (props) => {
             </div>
             
             <br/>
-                <Link to={"books/details/" + props.id}><div className="btn">Details</div></Link>
+                <Link to={"/books/details/" + props.id}><div className="btn">Details</div></Link>
         </div>
     );
 };

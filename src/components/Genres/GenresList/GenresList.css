@@ -15,6 +15,7 @@
     list-style-type: none;
     font-weight: bold;
     padding-right: 60px;
+    width: 200px;
 }
 
 .genresList li{
