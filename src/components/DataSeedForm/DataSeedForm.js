@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import './DataSeedForm.css';
 import InputError from '../Shared/InputError/InputError';
 import { uploadImage } from '../../services/storageService';
-import { addBook, getAllGenres } from '../../services/firestoreService';
+import { addEmptyBookDoc, getAllGenres } from '../../services/firestoreService';
 
 
 //NB:This component must not be part of the user interface. It serves only for seeding data!
@@ -18,7 +18,7 @@ const DataSeedForm = () =>{
 
     const onYearChangeHandler = (e) => {
         if(e.target.value < 1990 || e.target.value > 2021){
-            setErrorMessage('Year field must be between 1990 and 2021');
+            setErrorMessage('Year field must be between 1950 and 2021');
         } else {
             setErrorMessage('');
         };
@@ -73,8 +73,8 @@ const DataSeedForm = () =>{
             || !file){
             setErrorMessage("All fields are required!");
         }else{
-            addBook(book).then((res) => {
-                uploadImage(file, res);
+            addEmptyBookDoc().then((docId) => {
+                uploadImage(file, book, docId);
             });            
             e.target.author.value='';
             e.target.title.value='';
@@ -84,6 +84,7 @@ const DataSeedForm = () =>{
             e.target.price.value='';
             e.target.description.value='';
             e.target.bookCover.value='';
+            setFile();
             setErrorMessage('');
         };
     };

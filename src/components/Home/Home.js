@@ -1,5 +1,5 @@
 import './Home.css';
-import BestSellers from './BestSellers/BestSellers';
+import BestSellers from '../Book/BestSellers/BestSellers';
 import Greeting from './Greeting/Greeting';
 
 

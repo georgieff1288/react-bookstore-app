@@ -3,21 +3,22 @@ import StarRatings from 'react-star-ratings';
 
 import './Book.css';
 
-const Book = ({author, title, rating, price, imgSrc, id}) => {
+const Book = (props) => {    
+    
     return(
         <div className="book">
             <div>
-                <img src={imgSrc} alt={title}/>
+                <img src={props.imgSrc} alt=""/>
                 <br/>
-                <span className="bookTitle">{title}</span>
+                <span className="bookTitle">{props.title}</span>
                 <br/>
-                <span>Author: {author}</span>
+                <span>Author: {props.author}</span>
                 <br/>
-                <span>Price: {price}$</span>
+                <span>Price: {props.price}$</span>
                 <br/>
                 <span className="rating">
                     <StarRatings
-                        rating={rating}
+                        rating={props.rating}
                         starRatedColor="orange"
                         starEmptyColor="grey"
                         numberOfStars={5}
@@ -28,7 +29,7 @@ const Book = ({author, title, rating, price, imgSrc, id}) => {
             </div>
             
             <br/>
-                <Link to={"books/details/" + id}><div className="btn">Details</div></Link>
+                <Link to={"books/details/" + props.id}><div className="btn">Details</div></Link>
         </div>
     );
 };

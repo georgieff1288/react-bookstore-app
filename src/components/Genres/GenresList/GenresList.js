@@ -11,7 +11,8 @@ const GenresList = () => {
     
     useEffect(() => {       
         getAllGenres(setGenres, setLoader);
-    }, [])
+    }, []);
+    
     return (
         <div className="genres">
             <h2>Genres</h2>

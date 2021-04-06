@@ -10,8 +10,6 @@ const Details = ({ match }) => {
     const bookId = match.params.bookId;
     console.log(bookId);
 
-
-
     const book = {
         id:1,
         author:"Ken Kesey",
@@ -66,11 +64,11 @@ const Details = ({ match }) => {
                     starSpacing="1px"
                     className="rating"
                 />
-            
-                <span>Publisher: {book.publisher}</span>
-                <span>Published: {book.year}</span>
-                <span>Pages: {book.pages}</span>
-                <span>Price: {book.price}$</span>
+                <span className="reatingInfo">3.83/67,500 ratings</span>
+                <span className="bookInfo">Publisher: {book.publisher}</span>
+                <span className="bookInfo">Published: {book.year}</span>
+                <span className="bookInfo">Pages: {book.pages}</span>
+                <span className="bookInfo">Price: {book.price}$</span>
                 <button>Add to cart</button>
             </div>
             <div className="bookDescription">

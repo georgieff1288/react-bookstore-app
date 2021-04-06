@@ -1,8 +1,9 @@
 .bestSellers{
-    width: 265px;
+    width: 300px;
     margin: 30px;    
     background-color: rgb(238, 229, 229);
     border-radius: 15px;
+    padding-right: 30px;
 }
 
 .bestSellersHeading{
@@ -14,7 +15,7 @@
 
 .bestSellersList{
     list-style: none;
-    counter-reset: steps;
+    counter-reset: steps;    
 }
 
 .bestSellersList li {

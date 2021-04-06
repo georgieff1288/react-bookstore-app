@@ -38,7 +38,7 @@
     width: 80%;
 }
 
-.details span{
+.bookInfo{
     font-weight: bold;
 }
 
@@ -59,4 +59,8 @@
 
 .rviewForm{
     width: 50%;
+}
+
+.reatingInfo{
+    font-size: small;
 }
