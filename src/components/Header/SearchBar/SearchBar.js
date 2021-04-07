@@ -1,6 +1,7 @@
 import { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
-import "./SearchBar.css"
+import "./SearchBar.css";
 
 class SearchBar extends Component{
     constructor(props){
@@ -20,7 +21,7 @@ class SearchBar extends Component{
         e.preventDefault();
 
         if(this.state.searchValue) {
-            console.log(e.target.search.value); 
+            this.props.history.push('/search/' + this.state.searchValue);
         };       
     };
 
@@ -34,15 +35,17 @@ class SearchBar extends Component{
     };
 };
 
-
-
+export default withRouter(SearchBar);
 
 // import { useState } from 'react';
 
-// import "./SearchBar.css"
+// import "./SearchBar.css";
+// import { search } from '../../../services/firestoreService';
+// import { useHistory } from 'react-router-dom';
 
 // const SearchBar = () => {
 //     const [searchValue, setSearchText] = useState('');
+//     const history = useHistory();
 
 //     const onChange = (e) => {
 //         setSearchText(e.target.value);
@@ -52,7 +55,8 @@ class SearchBar extends Component{
 //         e.preventDefault();
 
 //         if(searchValue) {
-//             console.log(e.target.search.value); 
+//             console.log(searchValue);
+//             history.push('/search/' + searchValue) 
 //         };       
 //     };
 
@@ -64,4 +68,4 @@ class SearchBar extends Component{
 //     );
 // };
 
-export default SearchBar;
+// export default SearchBar;

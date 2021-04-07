@@ -9,6 +9,7 @@ import SignUp from './components/User/Auth/SignUp/SignUp';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import BookDetails from './components/Book/BookDetails/BookDetails';
 import DataSeedForm from './components/DataSeedForm/DataSeedForm';
+import SearchResult from './components/Header/SearchBar/SearchResult/SearchResult';
 import { logout } from './services/authService';
 
 import './App.css';
@@ -31,6 +32,7 @@ const App = () => {
                 <Route path="/books/genre/:name?" exact component={Genres} />
                 <Route path="/books" exact component={Genres} />
                 <Route path="/books/details/:bookId" exact component={BookDetails} />
+                <Route path="/search/:query" exact component={SearchResult} />
                 <Route path="/user/orders" exact component={UserOrders} />
                 <Route path="/user/sign-in" exact component={SignIn} />
                 <Route path="/user/sign-up" exact component={SignUp} />

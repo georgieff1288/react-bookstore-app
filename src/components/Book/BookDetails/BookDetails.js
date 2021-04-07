@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import './BookDetails.css';
 import Review from './Review/Review';
 import InputError from '../../Shared/InputError/InputError';
-import { getBookById, addReiew, getBookReviews } from '../../../services/firestoreService';
+import Loader from '../../Shared/Loader/Loader';
+import { getBookById, addReview, getBookReviews } from '../../../services/firestoreService';
 
 
 
@@ -15,11 +16,12 @@ const Details = ({ match }) => {
     const [rating, setRating] = useState(0);
     const [review, setReview] = useState('');
     const [reviewsList, setReviewList] = useState([]);
+    const [loader, setLoader] = useState('show'); 
 
-    useEffect(() => {     
+    useEffect(() => {  
         getBookReviews(bookId, setReviewList);      
-        getBookById(bookId, setBook);
-    },[bookId]);
+        getBookById(bookId, setBook, setLoader);
+    },[reviewsList, bookId]);
     const onSend = (e) => {
         e.preventDefault();
         let bookReview = {
@@ -33,8 +35,10 @@ const Details = ({ match }) => {
         }
 
         if(review && rating > 0){ 
-            addReiew(bookId, bookReview);
-            getBookReviews(bookId, setReviewList);           
+            addReview(bookId, bookReview);
+            getBookReviews(bookId, setReviewList); 
+            setReview('');
+            setRating(0);
         };
     };
 
@@ -56,11 +60,14 @@ const Details = ({ match }) => {
             
         };
     };
+    if(loader === 'show'){
+        return (<Loader display={loader} style={{width:180}}/>)
+    };
 
     return(
-        <div>
+        <div>                    
             <div className="detailsContainer">
-                <img src={book.imgSrc} alt={book.title}/>
+                <img src={book.imgSrc} alt=""/>
                 <div className="details">
                 <h2>{book.title}</h2>
                 <h3>by {book.author}</h3>
@@ -74,7 +81,7 @@ const Details = ({ match }) => {
                     starSpacing="1px"
                     className="rating"
                 />
-                <span className="reatingInfo">3.83/67,500 ratings</span>
+                <span className="ratingInfo">{book.rating}/{book.numOfRatings} ratings</span>
                 <span className="bookInfo">Publisher: {book.publisher}</span>
                 <span className="bookInfo">Published: {book.year}</span>
                 <span className="bookInfo">Pages: {book.pages}</span>
@@ -90,7 +97,7 @@ const Details = ({ match }) => {
         <div className="reviews">
             <div className="reviewsList">
                 {reviewsList[0] ? 
-                    reviewsList.map(x => 
+                    reviewsList.map(x =>
                         <Review key={x.id} author={x.author} content={x.content} rating={x.rating} date={x.created} id={x.id}/>
                     ) 
                 : 

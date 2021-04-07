@@ -22,7 +22,7 @@ const Header = () => {
                 </NavLink>
 
                 <SearchBar className="searchBar"/>
-
+                
                 <div className="auth">
                     <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={true} to="/user/orders">
                         <NavItem>My orders</NavItem>

@@ -35,7 +35,8 @@ export const addEmptyBookDoc = async () => {
 };
 
 export const setBookFields = async (book, docId) => {
-    book.searchName = book.author + ' ' + book.title;
+    let query = book.author + ' ' + book.title;
+    book.searchName = query.toLowerCase();
     book.numOfRatings = 0;
     book.sumOfRatings = 0;
     book.sales = 0;
@@ -74,13 +75,14 @@ export const getAllBooks = async (setState, setLoader) => {
     const items = [];
 
     await db.collection("books")
-        .orderBy("created")
+        .orderBy("created", "desc")
         .get()
         .then((querySnapshot) => { 
             querySnapshot.forEach((doc) => {
                 let calcRating = 0;  
                 if(doc.data().sumOfRatings > 0){
                     calcRating = doc.data().sumOfRatings/doc.data().numOfRatings;
+                    calcRating = Math.round(calcRating * 100) / 100;
                 }
                 items.push({ ...doc.data(), id: doc.id, rating:calcRating});
             });
@@ -97,7 +99,7 @@ export const getBooksByGenre = (genre, setState, setLoader) => {
 
     db.collection("books")
         .where("genre", "==", genre)
-        .orderBy("created")
+        .orderBy("created", "desc")
         .get()
         .then((querySnapshot) => { 
             querySnapshot.forEach((doc) => {
@@ -111,7 +113,7 @@ export const getBooksByGenre = (genre, setState, setLoader) => {
         });
 };
 
-export const getBookById = async (id, setState) => {
+export const getBookById = async (id, setState, setLoader) => {
     let book ='';
     await db.collection("books")
         .doc(id)
@@ -120,15 +122,18 @@ export const getBookById = async (id, setState) => {
             let calcRating = 0;  
             if(res.data().sumOfRatings > 0){
                 calcRating = res.data().sumOfRatings/res.data().numOfRatings;
+                calcRating = Math.round(calcRating * 100) / 100;
             }
             book = res.data();
             book.rating = calcRating;
             setState(book);
+            setLoader('hide');
         });
 };
 
-export const addReiew = async (id, review) => {
-    review.created = moment().format("MMM Do YYYY");
+export const addReview = async (id, review) => {
+    //review.created = moment().format("MMM Do YYYY");
+    review.created = moment().format('MMMM Do YYYY, hh:mm:ss');
     await db.collection("books")
         .doc(id).collection("reviews")
         .add(review)
@@ -154,11 +159,31 @@ export const getBookReviews = async (id, setState) => {
         .orderBy("created", "desc")
         .get()
         .then((res) => {
+            
             res.forEach((doc) => {
-                items.push({ ...doc.data(), id: doc.id});
+                let date = doc.data().created.slice(0, -10);
+                items.push({ ...doc.data(), id: doc.id,created: date });
             });
             setState(items);
         });
 };
 
-
+export const search = async (query, setState, setLoader) => {
+    let items = [];
+    query = query.toLowerCase();
+    await db.collection("books").get().then((res) => {
+        res.forEach((doc)=>{
+            let str = doc.data().searchName;
+            if(str.includes(query)){
+                let calcRating = 0;  
+                if(doc.data().sumOfRatings > 0){
+                    calcRating = doc.data().sumOfRatings/doc.data().numOfRatings;
+                    calcRating = Math.round(calcRating * 100) / 100;
+                }
+                items.push({ ...doc.data(), id: doc.id, rating:calcRating});
+            };            
+        });
+            setState(items);
+            setLoader('hide');
+    });
+}; 
