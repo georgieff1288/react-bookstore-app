@@ -1,0 +1,24 @@
+.editContainer{
+    margin: auto;
+    width: 35%;
+    padding: 10px;
+}
+
+.editContainer button{
+    background-color: gray;
+    font-weight: bold;
+    width: 60px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+}
+
+.editContainer textarea{
+    resize:none;
+}
+
+.editReviewloader{
+    margin: auto;
+    width: 35%;
+    padding: 10px;
+}

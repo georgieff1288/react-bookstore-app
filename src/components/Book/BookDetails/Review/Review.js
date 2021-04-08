@@ -2,23 +2,25 @@ import StarRatings from 'react-star-ratings';
 
 import './Review.css';
 
-const Review = ({author, content, rating, date, id}) => {
+
+const Review = (props, ) => {
+      
     return(
         <div className="reviewContainer">
             <div>
-                <b>{author}</b> rate it
+                <b>{props.author}</b> rate it
                 <span> </span>
                 <StarRatings
-                    rating={rating}
+                    rating={props.rating}
                     starRatedColor="orange"
                     starEmptyColor="grey"
                     numberOfStars={5}
                     starDimension="15px"
                     starSpacing="1px"                    
                 />
-                <span className="date">{date}</span>
+                <span className="date">{props.date}</span>
             </div>
-            <p>{content}</p>
+            <p>{props.content}</p>
         </div>
     );
 };

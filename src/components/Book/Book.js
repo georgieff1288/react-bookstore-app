@@ -14,7 +14,7 @@ const Book = (props) => {
                 <br/>
                 <span>Author: {props.author}</span>
                 <br/>
-                <span>Price: {props.price}$</span>
+                <span>Price: ${props.price}</span>
                 <br/>
                 <span className="rating">
                     <StarRatings

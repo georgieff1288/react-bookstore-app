@@ -1,32 +1,43 @@
 import StarRatings from 'react-star-ratings';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import './BookDetails.css';
 import Review from './Review/Review';
 import InputError from '../../Shared/InputError/InputError';
 import Loader from '../../Shared/Loader/Loader';
-import { getBookById, addReview, getBookReviews } from '../../../services/firestoreService';
+import { getBookById, addReview, getBookReviews, didUserWriteReview } from '../../../services/firestoreService';
+import { AuthContext } from '../../../context/AuthContext';
 
 
 
 const Details = ({ match }) => {
+    const {user} = useContext(AuthContext);
     const bookId = match.params.bookId;
     const [book, setBook] = useState({});
     const [errorMessage, setErrorMessage] = useState('');
     const [rating, setRating] = useState(0);
     const [review, setReview] = useState('');
     const [reviewsList, setReviewList] = useState([]);
-    const [loader, setLoader] = useState('show'); 
+    const [loader, setLoader] = useState('show');
+    const [check, setCheck] = useState('');
+    const [userReviewId, setUserReviewId] = useState('');
 
     useEffect(() => {  
         getBookReviews(bookId, setReviewList);      
         getBookById(bookId, setBook, setLoader);
-    },[reviewsList, bookId]);
+        if(user){
+            didUserWriteReview(bookId, user.uid).then((res) => {
+                setCheck(res.check);
+                setUserReviewId(res.reviewId);
+            });            
+        };             
+    },[bookId, user]);
     const onSend = (e) => {
         e.preventDefault();
         let bookReview = {
-            author:'Ivan ivanov',
-            creatorId:123,
+            author:user.displayName,
+            creatorId:user.uid,
             rating:rating,
             content:review
         };
@@ -35,8 +46,17 @@ const Details = ({ match }) => {
         }
 
         if(review && rating > 0){ 
-            addReview(bookId, bookReview);
-            getBookReviews(bookId, setReviewList); 
+            addReview(bookId, bookReview).then(() => {
+                getBookReviews(bookId, setReviewList)
+            }).then(() => {
+                getBookById(bookId, setBook, setLoader).then(() => {
+                    didUserWriteReview(bookId, user.uid).then((res) => {
+                        setCheck(res.check);
+                        setUserReviewId(res.reviewId);
+                    });
+                });
+            });
+            
             setReview('');
             setRating(0);
         };
@@ -85,8 +105,13 @@ const Details = ({ match }) => {
                 <span className="bookInfo">Publisher: {book.publisher}</span>
                 <span className="bookInfo">Published: {book.year}</span>
                 <span className="bookInfo">Pages: {book.pages}</span>
-                <span className="bookInfo">Price: {book.price}$</span>
-                <button>Add to cart</button>
+                <span className="bookInfo">Price: ${book.price}</span>
+                {user ?
+                    <button>Add to cart</button>
+                    :
+                    <h3><Link to="/user/sign-in">Login</Link> to write a review and order book</h3>
+                }
+                
             </div>
             <div className="bookDescription">
                 <h3>Description</h3>
@@ -98,45 +123,66 @@ const Details = ({ match }) => {
             <div className="reviewsList">
                 {reviewsList[0] ? 
                     reviewsList.map(x =>
-                        <Review key={x.id} author={x.author} content={x.content} rating={x.rating} date={x.created} id={x.id}/>
+                        <Review 
+                            key={x.id} 
+                            author={x.author} 
+                            content={x.content} 
+                            rating={x.rating} 
+                            date={x.created} 
+                            creatorId={x.creatorId}
+                            bookId={bookId} 
+                            id={x.id}/>
                     ) 
                 : 
                     <h2>There are no reviews yet.</h2>
                 }
 
             </div>
-            <div className="reviewFormContainer">
-                <h2>Write a review</h2>
-                <InputError>{errorMessage}</InputError>
-                <form onSubmit={onSend}>
-                    <span>
-                        <span>Rate this book   </span>              
-                        <StarRatings
-                            rating={rating}          
-                            changeRating={changeRating}
-                            starRatedColor="orange"
-                            starEmptyColor="grey"
-                            numberOfStars={5}
-                            starDimension="25px"
-                            starSpacing="2px"
-                            name="rating"
-                            id="rating"
+            {user && !check ? 
+                <div className="reviewFormContainer">
+                    <h2>Write a review</h2>
+                    <InputError>{errorMessage}</InputError>
+                    <form onSubmit={onSend}>
+                        <span>
+                            <span>Rate this book   </span>              
+                                <StarRatings
+                                    rating={rating}          
+                                    changeRating={changeRating}
+                                    starRatedColor="orange"
+                                    starEmptyColor="grey"
+                                    numberOfStars={5}
+                                    starDimension="25px"
+                                    starSpacing="2px"
+                                    name="rating"
+                                    id="rating"
+                                />
+                        </span>
+                        <br/>
+                        <textarea 
+                            rows="10" 
+                            cols="70" 
+                            name="review" 
+                            id="review" 
+                            onChange={onChangeHandler}
+                            onBlur={onReviewChangeHandler}
+                            value={review} 
                         />
-                    </span>
-                    <br/>
-                    <textarea 
-                        rows="10" 
-                        cols="70" 
-                        name="review" 
-                        id="review" 
-                        onChange={onChangeHandler}
-                        onBlur={onReviewChangeHandler}
-                        value={review} 
-                    />
-                    <br/>
-                    <button>Send</button>
-                </form>
-            </div>           
+                        <br/>
+                        <button>Send</button>
+                    </form>
+                </div>        
+                :
+                <span>
+                    {user ? 
+                        <div className="reviewFormMessage">
+                            <h2>You have already written a review.</h2>
+                            <h2>To edit review click <Link to={"/book/"+bookId+"/edit-review/"+userReviewId}>here</Link>.</h2>
+                        </div>
+                    :
+                    <span></span>
+                    }
+                </span>
+            }
         </div>        
     </div>        
     );

@@ -36,36 +36,3 @@ class SearchBar extends Component{
 };
 
 export default withRouter(SearchBar);
-
-// import { useState } from 'react';
-
-// import "./SearchBar.css";
-// import { search } from '../../../services/firestoreService';
-// import { useHistory } from 'react-router-dom';
-
-// const SearchBar = () => {
-//     const [searchValue, setSearchText] = useState('');
-//     const history = useHistory();
-
-//     const onChange = (e) => {
-//         setSearchText(e.target.value);
-//     };
-
-//     const search = (e) => {
-//         e.preventDefault();
-
-//         if(searchValue) {
-//             console.log(searchValue);
-//             history.push('/search/' + searchValue) 
-//         };       
-//     };
-
-//     return(
-//         <form onSubmit={search}>
-//             <input className="searchBar" type="text" name="search" id="search" onChange={onChange} placeholder="Search books" />
-//             <input type="submit" value="Search" className="searchButton" />
-//         </form>
-//     );
-// };
-
-// export default SearchBar;

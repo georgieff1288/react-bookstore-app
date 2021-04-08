@@ -85,3 +85,7 @@
 .reviewFormContainer textarea{
     resize:none;
 }
+
+.reviewFormMessage{
+    margin-left: 50px;
+}
