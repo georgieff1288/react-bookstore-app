@@ -16,7 +16,7 @@ const SignIn = ({history}) => {
                 if(res){
                     setErrorMessage(res);
                 }else{
-                    history.push('/genres');
+                    history.push('/');
                 };                
             });
         };

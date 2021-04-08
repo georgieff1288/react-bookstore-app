@@ -1,5 +1,6 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
 
+import './App.css';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Genres from './components/Genres/Genres';
@@ -11,35 +12,35 @@ import BookDetails from './components/Book/BookDetails/BookDetails';
 import DataSeedForm from './components/DataSeedForm/DataSeedForm';
 import SearchResult from './components/Header/SearchBar/SearchResult/SearchResult';
 import { logout } from './services/authService';
+import { AuthProvider } from './context/UserContext';
 
-import './App.css';
+
 
 const App = () => {
-    // const [user, setUser] = useState(null);
-    // useEffect(() => {
-    //     auth.onAuthStateChanged(setUser);
-    // }, []);    
+    
     
     return(
-        <div className="app">
-            <Header />
-            <Switch>
-                <Route path="/logout" render={() => {
-                logout();
-                return <Redirect to="/" />
-                 }} />
-                <Route path="/" exact component={Home} />
-                <Route path="/books/genre/:name?" exact component={Genres} />
-                <Route path="/books" exact component={Genres} />
-                <Route path="/books/details/:bookId" exact component={BookDetails} />
-                <Route path="/search/:query" exact component={SearchResult} />
-                <Route path="/user/orders" exact component={UserOrders} />
-                <Route path="/user/sign-in" exact component={SignIn} />
-                <Route path="/user/sign-up" exact component={SignUp} />
-                <Route path="/add-book" exact component={DataSeedForm} />              
-                <Route component={ErrorPage} />
-            </Switch>
-        </div>
+        <AuthProvider>
+            <div className="app">
+                <Header />
+                <Switch>
+                    <Route path="/logout" render={() => {
+                        logout();
+                        return <Redirect to="/" />
+                        }} />
+                    <Route path="/" exact component={Home} />
+                    <Route path="/books/genre/:name?" exact component={Genres} />
+                    <Route path="/books" exact component={Genres} />
+                    <Route path="/books/details/:bookId" exact component={BookDetails} />
+                    <Route path="/search/:query" exact component={SearchResult} />
+                    <Route path="/user/orders" exact component={UserOrders} />
+                    <Route path="/user/sign-in" exact component={SignIn} />
+                    <Route path="/user/sign-up" exact component={SignUp} />
+                    <Route path="/add-book" exact component={DataSeedForm} />              
+                    <Route component={ErrorPage} />
+                </Switch>
+            </div>
+        </AuthProvider>        
     );
 };
 

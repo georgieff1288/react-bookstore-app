@@ -19,12 +19,15 @@
     height: 60px;
 }
 
-.auth{
+.signedIn{
     margin-left: 5px;
-    display: flex; 
+    display: flex;
 }
 
-
+.auth{
+    margin-left: 250px;
+    display: flex;
+}
 
 .logo{
     font-family: papyrus;

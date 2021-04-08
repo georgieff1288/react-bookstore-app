@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom';
-
+import { useContext } from 'react';
+import { AuthContext } from '../../../context/UserContext';
 import './Greeting.css';
 
-const Greeting = (props) => {    
+const Greeting = () => {    
+    const {user} = useContext(AuthContext);
+  
     return(
         <div className="greeting">
-            {props.children ? 
+            {user? 
                 <div>
-                    <h1>Welcome, {props.children}.</h1>
+                    <h1>Welcome, {user.email}.</h1>
                     <h1>You can search, rate and order books.</h1>
                 </div>
                 :
