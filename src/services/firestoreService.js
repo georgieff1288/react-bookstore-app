@@ -133,16 +133,18 @@ export const getBookById = async (id, setState, setLoader) => {
 
 export const addReview = async (id, review) => {
     review.created = moment().format('MMMM Do YYYY, hh:mm:ss');
+    let reviewId= '';
     await db.collection("books")
         .doc(id).collection("reviews")
         .add(review)
-        .then(()=>{
+        .then((doc)=>{
+            reviewId = doc.id;
             updateRating(id, review.rating);
         }).then(()=>{
             db.collection("users")
                 .doc(review.creatorId)
-                .collection("reviews")
-                .add({bookId: id});
+                .collection("ratedBooks")
+                .add({bookId: id, reviewId: reviewId});
         });
 };
 
@@ -226,21 +228,20 @@ const updateBookRating = async (bookId, oldRating, newRating) => {
 };
 
 export const didUserWriteReview = async (bookId, userId) => {
-    let obj = {
-        check: false,
-        reviewId:''
-    };
+    let reviewId = null
     await db.collection("books")
         .doc(bookId)
         .collection("reviews")
-        .get().then((reviews) => { 
-            reviews.forEach((doc) => {                
-                if(doc.data().creatorId === userId){
-                    obj.check = true;
-                    obj.reviewId = doc.id;
-                    return obj;
+        .where("creatorId", "==", userId)
+        .limit(1)
+        .get()
+        .then((reviews) => {
+            reviews.forEach((doc) => {
+                if(doc.id){
+                    reviewId = doc.id;
+                    return reviewId;
                 }
             });
         });
-    return obj;
+    return reviewId;
 };

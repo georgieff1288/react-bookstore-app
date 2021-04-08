@@ -20,16 +20,14 @@ const Details = ({ match }) => {
     const [review, setReview] = useState('');
     const [reviewsList, setReviewList] = useState([]);
     const [loader, setLoader] = useState('show');
-    const [check, setCheck] = useState('');
-    const [userReviewId, setUserReviewId] = useState('');
+    const [userReviewId, setUserReviewId] = useState(null);
 
-    useEffect(() => {  
+    useEffect(() => {
         getBookReviews(bookId, setReviewList);      
         getBookById(bookId, setBook, setLoader);
-        if(user){
+        if(user){           
             didUserWriteReview(bookId, user.uid).then((res) => {
-                setCheck(res.check);
-                setUserReviewId(res.reviewId);
+                setUserReviewId(res);
             });            
         };             
     },[bookId, user]);
@@ -51,8 +49,7 @@ const Details = ({ match }) => {
             }).then(() => {
                 getBookById(bookId, setBook, setLoader).then(() => {
                     didUserWriteReview(bookId, user.uid).then((res) => {
-                        setCheck(res.check);
-                        setUserReviewId(res.reviewId);
+                        setUserReviewId(res);
                     });
                 });
             });
@@ -138,7 +135,7 @@ const Details = ({ match }) => {
                 }
 
             </div>
-            {user && !check ? 
+            {user && !userReviewId ? 
                 <div className="reviewFormContainer">
                     <h2>Write a review</h2>
                     <InputError>{errorMessage}</InputError>
@@ -176,7 +173,7 @@ const Details = ({ match }) => {
                     {user ? 
                         <div className="reviewFormMessage">
                             <h2>You have already written a review.</h2>
-                            <h2>To edit review click <Link to={"/book/"+bookId+"/edit-review/"+userReviewId}>here</Link>.</h2>
+                            <h2>If you want to edit it click <Link to={"/book/"+bookId+"/edit-review/"+userReviewId}>here</Link>.</h2>
                         </div>
                     :
                     <span></span>
