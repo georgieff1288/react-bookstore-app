@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
-import { AuthContext } from '../../../context/UserContext';
+import { AuthContext } from '../../../context/AuthContext';
 import './Greeting.css';
 
 const Greeting = () => {    

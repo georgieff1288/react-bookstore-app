@@ -12,7 +12,7 @@ import BookDetails from './components/Book/BookDetails/BookDetails';
 import DataSeedForm from './components/DataSeedForm/DataSeedForm';
 import SearchResult from './components/Header/SearchBar/SearchResult/SearchResult';
 import { logout } from './services/authService';
-import { AuthProvider } from './context/UserContext';
+import { AuthProvider } from './context/AuthContext';
 
 
 

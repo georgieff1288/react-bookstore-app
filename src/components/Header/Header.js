@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import './Header.css';
 import NavItem from './NavItem/NavItem';
 import SearchBar from './SearchBar/SearchBar';
-import { AuthContext } from '../../context/UserContext'; 
+import { AuthContext } from '../../context/AuthContext'; 
 
 const Header = () => {
     const { user } = useContext(AuthContext);  
