@@ -12,8 +12,10 @@ import BookDetails from './components/Book/BookDetails/BookDetails';
 import DataSeedForm from './components/DataSeedForm/DataSeedForm';
 import SearchResult from './components/Header/SearchBar/SearchResult/SearchResult';
 import EditReview from './components/Book/BookDetails/Review/EditReview/EditReview';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import { logout } from './services/authService';
 import { AuthProvider } from './context/AuthContext';
+import AuthGuard from './hoc/AuthGuard';
 
 
 
@@ -24,23 +26,25 @@ const App = () => {
         <AuthProvider>
             <div className="app">
                 <Header />
-                <Switch>
-                    <Route path="/logout" render={() => {
-                        logout();
-                        return <Redirect to="/" />
-                        }} />
-                    <Route path="/" exact component={Home} />
-                    <Route path="/books/genre/:name?" exact component={Genres} />
-                    <Route path="/books" exact component={Genres} />
-                    <Route path="/books/details/:bookId" exact component={BookDetails} />
-                    <Route path="/search/:query" exact component={SearchResult} />
-                    <Route path="/user/orders" exact component={UserOrders} />
-                    <Route path="/user/sign-in" exact component={SignIn} />
-                    <Route path="/user/sign-up" exact component={SignUp} />
-                    <Route path="/add-book" exact component={DataSeedForm} />
-                    <Route path="/book/:bookId/edit-review/:reviewId" exact component={EditReview} />               
-                    <Route component={ErrorPage} />
-                </Switch>
+                <ErrorBoundary>
+                    <Switch>
+                        <Route path="/logout" render={() => {
+                            logout();
+                            return <Redirect to="/" />
+                            }} />
+                        <Route path="/" exact component={Home} />
+                        <Route path="/books/genre/:name?" exact component={Genres} />
+                        <Route path="/books" exact component={Genres} />
+                        <Route path="/books/details/:bookId" exact component={BookDetails} />
+                        <Route path="/search/:query" exact component={SearchResult} />
+                        <Route path="/user/orders" exact component={AuthGuard(UserOrders)} />
+                        <Route path="/user/sign-in" exact component={SignIn} />
+                        <Route path="/user/sign-up" exact component={SignUp} />
+                        <Route path="/add-book" exact component={AuthGuard(DataSeedForm)} />
+                        <Route path="/book/:bookId/edit-review/:reviewId" exact component={AuthGuard(EditReview)} />               
+                        <Route component={ErrorPage} />
+                    </Switch>
+                </ErrorBoundary>
             </div>
         </AuthProvider>        
     );
