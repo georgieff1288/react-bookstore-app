@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import './BookDetails.css';
 import Review from './Review/Review';
-import ReviewForm from './Review/ReviewForm/ReviewForm';
+import WriteReview from './Review/WriteReview/WriteReview';
 import Loader from '../../Shared/Loader/Loader';
 import { getBookById, getBookReviews, didUserWriteReview } from '../../../services/firestoreService';
 import { AuthContext } from '../../../context/AuthContext';
@@ -88,7 +88,7 @@ const Details = ({ match }) => {
 
                 </div>
                 {user && !userReviewId ? 
-                    <ReviewForm user={user} bookId={bookId}/>
+                    <WriteReview user={user} bookId={bookId}/>
                     :
                     <span>
                     {user ? 

@@ -2,11 +2,11 @@ import StarRatings from 'react-star-ratings';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import'./ReviewForm.css';
+import'./WriteReview.css';
 import InputError from '../../../../Shared/InputError/InputError';
 import { addReview } from '../../../../../services/firestoreService';
 
-const ReviewForm = (props) => {
+const WriteReview = (props) => {
     const history = useHistory();
     const [errorMessage, setErrorMessage] = useState('');
     const [rating, setRating] = useState(0);
@@ -89,4 +89,4 @@ const ReviewForm = (props) => {
     );
 };
 
-export default ReviewForm;
+export default WriteReview;

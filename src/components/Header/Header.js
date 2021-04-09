@@ -26,13 +26,13 @@ const Header = () => {
     
                     <SearchBar className="searchBar"/>
                     {user?
-                    <div className="signedIn">
-                    <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={true} to="/user/orders">
-                        <NavItem>My orders</NavItem>
-                    </NavLink>                        
+                    <div className="signedIn">                      
                     <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={true} to="/add-book"> 
                         <NavItem>Add book</NavItem>
                     </NavLink> 
+                    <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={true} to="/user/orders">
+                        <NavItem>My orders</NavItem>
+                    </NavLink>  
                     <NavLink style={{ textDecoration: 'none' }} to="/logout"> 
                         <NavItem>Logout</NavItem>  
                     </NavLink> 

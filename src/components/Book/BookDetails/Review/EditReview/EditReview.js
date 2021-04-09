@@ -13,7 +13,7 @@ const EditReview = ({match, history}) => {
     const [loader, setLoader] = useState('show'); 
     const [book, setBook] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-    const [rating, setRating] = useState(0);;
+    const [rating, setRating] = useState(0);
     useEffect(() => {
         getBookById(bookId, setBook, setLoader);
         getReview(bookId, reviewId, setReview);
