@@ -29,7 +29,7 @@ const ReviewForm = (props) => {
             setReview('');
             setRating(0);
             history.push(`/books`);
-            return
+            return null;
         };
     };
 

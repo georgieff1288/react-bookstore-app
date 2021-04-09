@@ -13,6 +13,7 @@ const Review = (props) => {
     const onDeleteHandler = () => {
         deleteReview(props.bookId, props.id, user.uid, props.rating);
         history.push('/books');
+        return null;
     };
       
     return(
