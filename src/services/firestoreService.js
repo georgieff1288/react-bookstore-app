@@ -30,6 +30,9 @@ export const addEmptyBookDoc = async () => {
         .add({})
         .then((doc) => {
             docId = doc.id;
+        })
+        .catch((err) => {
+            window.alert(err.message);
         });
     return docId;
 };
@@ -128,23 +131,22 @@ export const getBookById = async (id, setState, setLoader) => {
             book.rating = calcRating;
             setState(book);
             setLoader('hide');
+        })
+        .catch((err) => {
+            window.alert(err.message);
         });
 };
 
 export const addReview = async (id, review) => {
     review.created = moment().format('MMMM Do YYYY, hh:mm:ss');
-    let reviewId= '';
     await db.collection("books")
         .doc(id).collection("reviews")
         .add(review)
-        .then((doc)=>{
-            reviewId = doc.id;
+        .then(()=>{
             updateRating(id, review.rating);
-        }).then(()=>{
-            db.collection("users")
-                .doc(review.creatorId)
-                .collection("ratedBooks")
-                .add({bookId: id, reviewId: reviewId});
+        })
+        .catch((err) => {
+            window.alert(err.message);
         });
 };
 
@@ -154,6 +156,9 @@ const updateRating = (id, rating) => {
         .update({
             sumOfRatings: firebase.firestore.FieldValue.increment(rating),
             numOfRatings: firebase.firestore.FieldValue.increment(1)
+        })
+        .catch((err) => {
+            window.alert(err.message);
         });
 };
 
@@ -170,6 +175,9 @@ export const getBookReviews = async (id, setState) => {
                 items.push({ ...doc.data(), id: doc.id,created: date });
             });
             setState(items);
+        })
+        .catch((err) => {
+            window.alert(err.message);
         });
 };
 
@@ -190,6 +198,9 @@ export const search = async (query, setState, setLoader) => {
         });
             setState(items);
             setLoader('hide');
+    })
+    .catch((err) => {
+        window.alert(err.message);
     });
 }; 
 
@@ -198,12 +209,18 @@ export const getUsername = async (id, setState) => {
     await db.collection("users").doc(id).get().then((doc)=>{
         let username = doc.data().username;
         setState(username);
+    })
+    .catch((err) => {
+        window.alert(err.message);
     });
 };
 
 export const getReview = async (bookId, reviewId, setState) => {
     await db.collection("books").doc(bookId).collection("reviews").doc(reviewId).get().then((doc) => {
         setState(doc.data());
+    })
+    .catch((err) => {
+        window.alert(err.message);
     });
 };
 
@@ -215,7 +232,9 @@ export const updateReview = async (bookId, review, reviewId, oldRating) => {
         .update(review)
         .then(() => {
             updateBookRating(bookId, oldRating, review.rating)
-        }).catch((err)=>{window.alert(err.message)});
+        }).catch((err) => {
+            window.alert(err.message)
+        });
 };
 
 const updateBookRating = async (bookId, oldRating, newRating) => {
@@ -224,7 +243,9 @@ const updateBookRating = async (bookId, oldRating, newRating) => {
             .doc(bookId)
             .update({
             sumOfRatings: firebase.firestore.FieldValue.increment(rating)
-        }).catch((err)=>{window.alert(err.message)});
+        }).catch((err) => {
+            window.alert(err.message)
+        });
 };
 
 export const didUserWriteReview = async (bookId, userId) => {
@@ -242,6 +263,28 @@ export const didUserWriteReview = async (bookId, userId) => {
                     return reviewId;
                 }
             });
+        })
+        .catch((err) => {
+            window.alert(err.message);
         });
     return reviewId;
+};
+
+
+export const deleteReview = async (bookId, reviewId, userId, rating) => {
+    let bookRef = db.collection("books").doc(bookId);
+    await bookRef
+            .collection("reviews")
+            .doc(reviewId)
+            .delete()
+            .then(() => {
+                bookRef
+                .update({
+                    sumOfRatings: firebase.firestore.FieldValue.increment(-rating),
+                    numOfRatings: firebase.firestore.FieldValue.increment(-1)
+                })
+            })
+            .catch((err) => {
+                window.alert(err.message);
+            });
 };
