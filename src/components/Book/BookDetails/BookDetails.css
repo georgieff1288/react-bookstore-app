@@ -61,30 +61,8 @@
     margin-left: 20px;
 }
 
-.rviewForm{
-    width: 50%;
-}
-
 .ratingInfo{
     font-size: small;
-}
-
-.reviewFormContainer{
-    margin: 10px;
-    margin-left: 40px;
-}
-
-.reviewFormContainer button{
-    background-color: gray;
-    font-weight: bold;
-    width: 60px;
-    height: 30px;
-    border-radius: 10px;
-    border: none;
-}
-
-.reviewFormContainer textarea{
-    resize:none;
 }
 
 .reviewFormMessage{

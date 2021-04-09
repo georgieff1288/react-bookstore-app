@@ -38,14 +38,14 @@ const EditReview = ({match, history}) => {
         let editedReview = {...review, content: e.target.content.value, rating: rating};
         if(rating === 0){
             setErrorMessage('Rating can not be zero');
-        }
+        };
 
         if(review && rating > 0){ 
             updateReview(bookId, editedReview, reviewId, review.rating).then(() => {
                 history.push(`/books/details/${bookId}`);
                 return
             });
-        }
+        };
     };
 
     if(loader === 'show'){
