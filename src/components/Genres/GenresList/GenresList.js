@@ -12,6 +12,7 @@ const GenresList = () => {
     useEffect(() => {       
         getAllGenres(setGenres, setLoader);
     }, []);
+    getAllGenres(setGenres, setLoader);
     
     return (
         <div className="genres">

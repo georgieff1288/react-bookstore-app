@@ -3,7 +3,8 @@ import { useContext } from 'react';
 
 import './Header.css';
 import NavItem from './NavItem/NavItem';
-import SearchBar from './SearchBar/SearchBar';
+import SearchBar from '../SearchBar/SearchBar';
+import Cart from '../Cart/Cart';
 import { AuthContext } from '../../context/AuthContext'; 
 
 const Header = () => {
@@ -25,6 +26,7 @@ const Header = () => {
                     </NavLink>
     
                     <SearchBar className="searchBar"/>
+
                     {user?
                     <div className="signedIn">                      
                     <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={true} to="/add-book"> 
@@ -32,7 +34,10 @@ const Header = () => {
                     </NavLink> 
                     <NavLink style={{ textDecoration: 'none' }} activeClassName="active-nav-item" exact={true} to="/user/orders">
                         <NavItem>My orders</NavItem>
-                    </NavLink>  
+                    </NavLink>
+                    <NavLink style={{ textDecoration: 'none' }} to="/checkout/cart"> 
+                        <Cart/>
+                    </NavLink>
                     <NavLink style={{ textDecoration: 'none' }} to="/logout"> 
                         <NavItem>Logout</NavItem>  
                     </NavLink> 

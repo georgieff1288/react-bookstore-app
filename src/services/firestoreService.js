@@ -10,8 +10,8 @@ export const getAllGenres = async (setState, setLoader) => {
     await db.collection("genres")
         .orderBy("name")
         .get()
-        .then((querySnapshot) => { 
-            querySnapshot.forEach((doc) => {
+        .then((genres) => { 
+            genres.forEach((doc) => {
                items.push({ ...doc.data(), id: doc.id });
             });
             setState(items);
@@ -287,4 +287,75 @@ export const deleteReview = async (bookId, reviewId, userId, rating) => {
             .catch((err) => {
                 window.alert(err.message);
             });
+};
+
+export const orderBooks = async (userId, books, totalPrice) => {    
+    let date = moment().format('MMMM Do YYYY');
+    let docId = '';
+    await db.collection("orders")
+        .add({creator: userId, date: date, totalPrice:totalPrice})
+        .then((doc) => {
+            docId = doc.id;
+        })
+        .then(() => {
+            books.forEach(book => {
+                db.collection("orders")
+                    .doc(docId)
+                    .collection("books")
+                    .add({author:book.author, title:book.title, price:book.price});
+            });
+        })
+        .then(() => {
+            books.forEach(book=> {
+                db.collection("books").doc(book.id).update({
+                    sales: firebase.firestore.FieldValue.increment(1)
+                });
+            });
+        })
+        .then(() =>{
+            window.alert("Your order has been sent successfully.");
+        })
+        .catch((err) => {
+            window.alert(err.message);
+        });
+};
+
+export const getUserOrders = async (userId) => {
+    let orders = [];
+    let order = {}; 
+    await db.collection("orders")
+    .where("creator", "==", userId)
+    .orderBy("date", "desc")
+    .get()
+    .then((resOrder) => {
+        resOrder.forEach((doc) => {
+            order.date = doc.data().date;
+            order.totalPrice = doc.data().totalPrice;
+            order.id = doc.id
+            orders.push({...order});
+                     
+        });
+    })
+    .catch((err) => {
+        window.alert(err.message);
+    });
+    return orders;   
+};
+
+export const getOrderBooks = async (orderId, setState, setLoading) => {
+    let items = [];
+    await db.collection("orders")
+        .doc(orderId)
+        .collection("books")
+        .get()
+        .then((books) => {
+            books.forEach((doc) => {
+                items.push({ ...doc.data(), id: doc.id});
+            });
+            setState(items);
+            setLoading('hideLoading')
+        })
+        .catch((err) => {
+            window.alert(err.message);
+        });
 };

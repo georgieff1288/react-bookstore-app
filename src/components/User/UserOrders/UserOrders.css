@@ -1,0 +1,37 @@
+.ordersContainer{
+    padding: 20px;
+    margin-left: 100px;
+    display: flex;
+}
+
+.order{
+    margin-bottom: 20px;
+}
+
+.orderInfo{
+    font-size: large;
+    font-weight: bold;
+    text-decoration-line: underline;
+}
+
+.order button{
+    margin-left: 10px;
+    background-color: rgb(190, 190, 190);
+    border-radius: 10px;
+}
+
+.orderDetails{
+    margin-left: 100px;
+}
+
+.orderDetails{
+    margin-left: 10px;
+}
+
+.showLoading{
+    margin-left: 10px;
+}
+
+.hideLoading{
+    display: none;
+}

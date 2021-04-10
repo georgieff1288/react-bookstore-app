@@ -14,13 +14,12 @@
 .links a{
     padding-right: 20px;
     padding-bottom: auto;
-    margin-left: 5px;
+    margin-left: 1px;
     text-align: center;
     height: 60px;
 }
 
 .signedIn{
-    margin-left: 5px;
     display: flex;
 }
 

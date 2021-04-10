@@ -1,0 +1,16 @@
+.cartImg{
+    width: 30px;
+    height: 30px;
+}
+
+.cartLogo{
+    margin-left: 10px;
+    margin-top: 15px;
+    text-decoration: none;
+}
+
+.cartLogo span{
+    color: black;
+    font-size: medium;
+    font-weight: bold;
+}

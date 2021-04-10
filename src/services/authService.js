@@ -20,13 +20,13 @@ export const register = async (data) => {
 
 
 export const login = async (data) => {
-    let res ='';
+    let error ='';
     await auth.signInWithEmailAndPassword(data.email, data.password)
         .catch((err) => {
             //error = err.message;
-            res = 'Invalid email or password.';
+            error = 'Invalid email or password.';
         });
-    return res;
+    return error;
 };
 
 export const logout = async () => {

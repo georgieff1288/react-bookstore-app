@@ -8,6 +8,7 @@ import WriteReview from './Review/WriteReview/WriteReview';
 import Loader from '../../Shared/Loader/Loader';
 import { getBookById, getBookReviews, didUserWriteReview } from '../../../services/firestoreService';
 import { AuthContext } from '../../../context/AuthContext';
+import { CartContext } from '../../../context/CartContext';
 
 
 
@@ -18,6 +19,7 @@ const Details = ({ match }) => {
     const [reviewsList, setReviewList] = useState([]);
     const [loader, setLoader] = useState('show');
     const [userReviewId, setUserReviewId] = useState(null);
+    const [cart, setCart] = useContext(CartContext);
 
     useEffect(() => {
         getBookReviews(bookId, setReviewList);      
@@ -26,8 +28,15 @@ const Details = ({ match }) => {
             didUserWriteReview(bookId, user.uid).then((res) => {
                 setUserReviewId(res);
             });            
-        };          
+        };       
     },[bookId, user]);
+
+    const addToCart = () => {
+        if(cart.filter(obj => obj.title === book.title).length ===0){
+            let item = {...book, id:bookId};
+            setCart(currentState => [...currentState, item]);
+        };
+    }; 
    
     if(loader === 'show'){
         return (<Loader display={loader} style={{width:180}}/>)
@@ -56,7 +65,7 @@ const Details = ({ match }) => {
                     <span className="bookInfo">Pages: {book.pages}</span>
                     <span className="bookInfo">Price: ${book.price}</span>
                     {user ?
-                        <button>Add to cart</button>
+                        <button onClick={addToCart}>Add to cart</button>
                         :
                         <h3><Link to="/user/sign-in">Login</Link> to write a review and order book</h3>
                     }

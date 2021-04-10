@@ -1,9 +1,9 @@
 import { useState, useEffect} from 'react';
 
 import'./SearchResult.css';
-import BookList from '../../../Book/BooksList/BooksList';
-import Loader from '../../../Shared/Loader/Loader';
-import { search } from '../../../../services/firestoreService'; 
+import BookList from '../../Book/BooksList/BooksList';
+import Loader from '../../Shared/Loader/Loader';
+import { search } from '../../../services/firestoreService'; 
 
 const SearchResult = ({match}) => {
     const [result, setResult] = useState([]);

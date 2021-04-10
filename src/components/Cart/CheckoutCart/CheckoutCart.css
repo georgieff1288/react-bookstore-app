@@ -1,0 +1,38 @@
+.emptyCart{
+    margin-top: 50px;
+    text-align: center;
+}
+
+.cartContainer{
+    padding: 20px;
+    margin: auto;
+    width: 50%;
+}
+    
+.underline{
+    border-bottom: 1px solid #000;
+    margin-top: 20px;
+    margin-bottom: 20px;    
+}
+
+.cartContainerTitle{
+    text-align: center;
+}
+
+.btnOrder{
+    background-color: rgb(190, 190, 190);
+    height: 35px;
+    width: 100px;
+    margin-top: 30px;
+    border: none;
+    color: rgb(7, 7, 7);
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.totalPrice{
+    font-size: large;
+    font-weight: bold;
+}
