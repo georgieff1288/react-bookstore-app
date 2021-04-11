@@ -10,7 +10,9 @@ import { addEmptyBookDoc, getAllGenres } from '../../services/firestoreService';
 const DataSeedForm = () =>{
     const [genres, setGenres] = useState([]);
     useEffect(() => {
-        getAllGenres(setGenres);
+        getAllGenres().then((res) => {
+            setGenres(res);
+        });
     }, []);
 
     const [file, setFile] = useState();

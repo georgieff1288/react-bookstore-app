@@ -24,7 +24,10 @@ const UserOrders = () => {
         setLoading('showLoading');
         let id = e.target.name;
         setOrderId(id);
-        getOrderBooks(id, setOrderBooks, setLoading);
+        getOrderBooks(id).then((res) => {
+            setOrderBooks(res);
+            setLoading('hideLoading');
+        });
     };
 
     return(

@@ -14,9 +14,15 @@ const Genres = ({match}) => {
 
     useEffect(() => {  
         if(genre){
-            getBooksByGenre(genre, setBooks, setLoader);
+            getBooksByGenre(genre).then((res) => {
+                setBooks(res);
+                setLoader('hide');
+            });
         }else{
-            getAllBooks(setBooks, setLoader);
+            getAllBooks().then((res) => {
+                setBooks(res);
+                setLoader('hide');
+            });
         }
     }, [genre]);
 

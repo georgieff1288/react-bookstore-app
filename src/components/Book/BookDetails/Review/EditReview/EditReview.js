@@ -15,8 +15,13 @@ const EditReview = ({match, history}) => {
     const [errorMessage, setErrorMessage] = useState('');
     const [rating, setRating] = useState(0);
     useEffect(() => {
-        getBookById(bookId, setBook, setLoader);
-        getReview(bookId, reviewId, setReview);
+        getBookById(bookId).then((res) => {
+            setBook(res);
+            setLoader('hide');
+        });
+        getReview(bookId, reviewId).then((res) => {
+            setReview(res);
+        });
     },[bookId, reviewId]);
 
     const changeRating = (newRating) => {

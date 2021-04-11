@@ -11,7 +11,7 @@ const Review = (props) => {
     const history = useHistory();
 
     const onDeleteHandler = () => {
-        deleteReview(props.bookId, props.id, user.uid, props.rating);
+        deleteReview(props.bookId, props.id, props.rating);
         history.push('/books');
         return null;
     };

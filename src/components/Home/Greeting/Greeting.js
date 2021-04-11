@@ -9,8 +9,10 @@ const Greeting = () => {
     const [username, setUsername] = useState();
     useEffect(() => {
         if(user){
-            getUsername(user.uid, setUsername);
-        } 
+            getUsername(user.uid).then((res) => {
+                setUsername(res)
+            });
+        }; 
     },[user]);
   
     return(

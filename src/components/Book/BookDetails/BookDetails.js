@@ -22,8 +22,13 @@ const Details = ({ match }) => {
     const [cart, setCart] = useContext(CartContext);
 
     useEffect(() => {
-        getBookReviews(bookId, setReviewList);      
-        getBookById(bookId, setBook, setLoader);
+        getBookReviews(bookId, setReviewList).then((res) => {
+            setReviewList(res);
+        });   
+        getBookById(bookId).then((res) => {
+            setBook(res);
+            setLoader('hide');
+        });
         if(user){           
             didUserWriteReview(bookId, user.uid).then((res) => {
                 setUserReviewId(res);

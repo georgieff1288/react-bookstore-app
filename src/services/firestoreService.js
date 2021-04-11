@@ -4,7 +4,7 @@ import firebase from 'firebase/app';
 import { db } from '../utils/firebase.config';
 
 
-export const getAllGenres = async (setState, setLoader) => {
+export const getAllGenres = async () => {
     const items = [];
 
     await db.collection("genres")
@@ -14,14 +14,11 @@ export const getAllGenres = async (setState, setLoader) => {
             genres.forEach((doc) => {
                items.push({ ...doc.data(), id: doc.id });
             });
-            setState(items);
-            if(setLoader){
-                setLoader('hide');
-            };
         })
         .catch((err) => {
             window.alert(err.message);
         });
+    return items;
 };
 
 export const addEmptyBookDoc = async () => {
@@ -53,7 +50,7 @@ export const setBookFields = async (book, docId) => {
         });
 };
 
-export const getBestSellers = async (setState, setLoader) =>{
+export const getBestSellers = async () =>{
     const items = [];
 
     await db.collection("books")
@@ -64,17 +61,14 @@ export const getBestSellers = async (setState, setLoader) =>{
             querySnapshot.forEach((doc) => {                
                 items.push({ ...doc.data(), id: doc.id});
             });
-            setState(items);
-            if(setLoader){
-                setLoader('hide');
-            };
         })
         .catch((err) => {
             window.alert(err.message);
         });
+    return items;
 };
 
-export const getAllBooks = async (setState, setLoader) => {
+export const getAllBooks = async () => {
     const items = [];
 
     await db.collection("books")
@@ -89,34 +83,37 @@ export const getAllBooks = async (setState, setLoader) => {
                 }
                 items.push({ ...doc.data(), id: doc.id, rating:calcRating});
             });
-            setState(items);
-            setLoader('hide');
         })
         .catch((err) => {
             window.alert(err.message);
         });
+    return items;
 };
 
-export const getBooksByGenre = (genre, setState, setLoader) => {
+export const getBooksByGenre = async (genre) => {
     const items = [];
 
-    db.collection("books")
+    await db.collection("books")
         .where("genre", "==", genre)
         .orderBy("created", "asc")
         .get()
         .then((querySnapshot) => { 
             querySnapshot.forEach((doc) => {
-                items.push({ ...doc.data(), id: doc.id});
+                let calcRating = 0;  
+                if(doc.data().sumOfRatings > 0){
+                    calcRating = doc.data().sumOfRatings/doc.data().numOfRatings;
+                    calcRating = Math.round(calcRating * 100) / 100;
+                }
+                items.push({ ...doc.data(), id: doc.id, rating:calcRating});
             });
-            setState(items);
-            setLoader('hide');
         })
         .catch((err) => {
             window.alert(err.message);
         });
+    return items;
 };
 
-export const getBookById = async (id, setState, setLoader) => {
+export const getBookById = async (id) => {
     let book ='';
     await db.collection("books")
         .doc(id)
@@ -129,12 +126,11 @@ export const getBookById = async (id, setState, setLoader) => {
             }
             book = res.data();
             book.rating = calcRating;
-            setState(book);
-            setLoader('hide');
         })
         .catch((err) => {
             window.alert(err.message);
         });
+    return book;
 };
 
 export const addReview = async (id, review) => {
@@ -150,8 +146,8 @@ export const addReview = async (id, review) => {
         });
 };
 
-const updateRating = (id, rating) => {
-    db.collection("books")
+const updateRating = async (id, rating) => {
+    await db.collection("books")
         .doc(id)
         .update({
             sumOfRatings: firebase.firestore.FieldValue.increment(rating),
@@ -162,7 +158,7 @@ const updateRating = (id, rating) => {
         });
 };
 
-export const getBookReviews = async (id, setState) => {
+export const getBookReviews = async (id) => {
     const items = [];
     await db.collection("books")
         .doc(id)
@@ -174,14 +170,14 @@ export const getBookReviews = async (id, setState) => {
                 let date = doc.data().created.slice(0, -10);
                 items.push({ ...doc.data(), id: doc.id,created: date });
             });
-            setState(items);
         })
         .catch((err) => {
             window.alert(err.message);
         });
+    return items;
 };
 
-export const search = async (query, setState, setLoader) => {
+export const search = async (query) => {
     let items = [];
     query = query.toLowerCase();
     await db.collection("books").get().then((res) => {
@@ -196,32 +192,34 @@ export const search = async (query, setState, setLoader) => {
                 items.push({ ...doc.data(), id: doc.id, rating:calcRating});
             };            
         });
-            setState(items);
-            setLoader('hide');
     })
     .catch((err) => {
-        window.alert(err.message);
+            window.alert(err.message);
     });
+    return items;
 }; 
 
 
-export const getUsername = async (id, setState) => {
+export const getUsername = async (id) => {
+    let username ='';
     await db.collection("users").doc(id).get().then((doc)=>{
-        let username = doc.data().username;
-        setState(username);
+        username = doc.data().username;
     })
     .catch((err) => {
         window.alert(err.message);
     });
+    return username;
 };
 
-export const getReview = async (bookId, reviewId, setState) => {
+export const getReview = async (bookId, reviewId) => {
+    let review = '';
     await db.collection("books").doc(bookId).collection("reviews").doc(reviewId).get().then((doc) => {
-        setState(doc.data());
+        review = doc.data();
     })
     .catch((err) => {
         window.alert(err.message);
     });
+    return review;
 };
 
 export const updateReview = async (bookId, review, reviewId, oldRating) => {
@@ -271,7 +269,7 @@ export const didUserWriteReview = async (bookId, userId) => {
 };
 
 
-export const deleteReview = async (bookId, reviewId, userId, rating) => {
+export const deleteReview = async (bookId, reviewId, rating) => {
     let bookRef = db.collection("books").doc(bookId);
     await bookRef
             .collection("reviews")
@@ -342,7 +340,7 @@ export const getUserOrders = async (userId) => {
     return orders;   
 };
 
-export const getOrderBooks = async (orderId, setState, setLoading) => {
+export const getOrderBooks = async (orderId) => {
     let items = [];
     await db.collection("orders")
         .doc(orderId)
@@ -352,10 +350,9 @@ export const getOrderBooks = async (orderId, setState, setLoading) => {
             books.forEach((doc) => {
                 items.push({ ...doc.data(), id: doc.id});
             });
-            setState(items);
-            setLoading('hideLoading')
         })
         .catch((err) => {
             window.alert(err.message);
         });
+    return items;
 };

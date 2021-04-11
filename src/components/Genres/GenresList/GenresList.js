@@ -10,7 +10,10 @@ const GenresList = () => {
     const [loader, setLoader] = useState('show'); 
     
     useEffect(() => {       
-        getAllGenres(setGenres, setLoader);
+        getAllGenres().then((res) => {
+            setGenres(res);
+            setLoader('hide');
+        });
     }, []);
     
     return (

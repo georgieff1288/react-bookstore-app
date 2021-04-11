@@ -10,7 +10,10 @@ const BestSellers = () => {
     const [loader, setLoader] = useState('show'); 
 
     useEffect(() => {       
-        getBestSellers(setBestSellers, setLoader);
+        getBestSellers().then((res) => {
+            setBestSellers(res);
+            setLoader('hide');
+        });
     }, []);
 
     return(

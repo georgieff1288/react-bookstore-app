@@ -10,7 +10,10 @@ const SearchResult = ({match}) => {
     const [loader, setLoader] = useState('show');
     
     useEffect(() => {       
-        search(match.params.query, setResult, setLoader);
+        search(match.params.query).then((res) => {
+            setResult(res);
+            setLoader('hide')
+        });
     }, [match.params.query]);
 
     if(loader === "show"){

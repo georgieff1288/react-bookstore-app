@@ -2,10 +2,10 @@ import { storage } from '../utils/firebase.config';
 
 import { setBookFields } from './firestoreService';
 
-export const uploadImage = (file, book, docId) => {
+export const uploadImage = async (file, book, docId) => {
     let storageRef = storage.ref();
     let fileRef = storageRef.child(docId);
-    fileRef.put(file)
+    await fileRef.put(file)
         .then(() => {
             setImageSrc(book, docId);
         })
@@ -14,9 +14,9 @@ export const uploadImage = (file, book, docId) => {
         });
 };
 
-export const setImageSrc = (book, docId) => {
+export const setImageSrc = async (book, docId) => {
     let storageRef = storage.ref();
-    storageRef.child(docId)
+    await storageRef.child(docId)
         .getDownloadURL()
         .then((url)=>{
             book.imgSrc = url;
