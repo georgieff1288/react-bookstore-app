@@ -78,7 +78,7 @@ export const getAllBooks = async (setState, setLoader) => {
     const items = [];
 
     await db.collection("books")
-        .orderBy("created", "desc")
+        .orderBy("created", "asc")
         .get()
         .then((querySnapshot) => { 
             querySnapshot.forEach((doc) => {
@@ -102,7 +102,7 @@ export const getBooksByGenre = (genre, setState, setLoader) => {
 
     db.collection("books")
         .where("genre", "==", genre)
-        .orderBy("created", "desc")
+        .orderBy("created", "asc")
         .get()
         .then((querySnapshot) => { 
             querySnapshot.forEach((doc) => {

@@ -124,7 +124,7 @@ const DataSeedForm = () =>{
                 <br/>
                 <label className="seedFormLabel" htmlFor="price">Price</label>
                 <br/>
-                <input type="decimal" name="price" id="price" onBlur={onPriceChangeHandler}/>
+                <input type="number" name="price" id="price" step="any" onBlur={onPriceChangeHandler}/>
                 <br/>
                 <label className="seedFormLabel" htmlFor="description">Description</label>
                 <br/>

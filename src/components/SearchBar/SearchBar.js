@@ -22,6 +22,7 @@ class SearchBar extends Component{
 
         if(this.state.searchValue) {
             this.props.history.push('/search/' + this.state.searchValue);
+            this.setState({searchValue: ''});
         };       
     };
 

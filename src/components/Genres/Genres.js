@@ -24,7 +24,7 @@ const Genres = ({match}) => {
         <div className="genresPage">
             <GenresList/>
             <Loader display={loader} style={{width:180}}/>
-            {genre ? <BooksList items={books}/> : <BooksList items={books}/>}             
+            <BooksList items={books}/>            
         </div>
     );
 };
